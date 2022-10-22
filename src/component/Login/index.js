@@ -1,27 +1,26 @@
 import React from "react";
-
+import "./styles.css"
 const Login = () => {
   return (
     <div>
-      <div className="left-side">
-        <div className="top-logo">
-          <img src="#" alt="App Logo"/>
-          <h1>App Title</h1>
-        </div>
-        <div className="middle-logo">
-          <div className="app-title">
-            <h1 className="title">Decentralize voting</h1>
-            <h2 className="sub-title">App Subheading</h2>
+      <div className = "wrapper">
+        <div className="left-side">
+          <div className="top-logo">
+            <img src="#"/>
+            <span>DVOTE</span> 
           </div>
-          <div className="button">
-            {/* We have 2 options to change this:
-            1. We will use this div to create button
-            2. change "div" to "button" and style the button elememnt
-            */}
+          <div className="middle-logo">
+            <div className="app-title">
+              <h1 className="title">Decentralize Voting</h1>
+              <h2 className="sub-title">The reliable voting system</h2>
+            </div>
+            <button>
+               Connect With Metamask Account
+            </button>
           </div>
         </div>
+        <div className="right-side"></div>
       </div>
-      <div className="right-side"></div>
     </div>
   );
 };
