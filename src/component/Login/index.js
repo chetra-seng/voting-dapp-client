@@ -3,28 +3,27 @@ import Logo from "./../../assets/images/blockchain.png";
 
 const Login = () => {
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row min-h-screen">
       <div className="basis-1/2 left-side">
-        <div className="container">
+        <div className="container py-10 px-20 flex flex-col min-h-screen">
           <div className="flex flex-row gap-3 top-logo">
             <img className="w-8 h-8" src={Logo} alt="App logo" />
-            <h1>Decentralize Voting</h1>
+            <h3>Decentralize Voting</h3>
           </div>
-          <div className="middle-logo">
-            <div className="app-title">
-              <h1 className="title">Decentralize voting</h1>
-              <h2 className="sub-title">App Subheading</h2>
-            </div>
-            <div className="button">
-              {/* We have 2 options to change this:
-            1. We will use this div to create button
-            2. change "div" to "button" and style the button elememnt
-            */}
+          <div className="middle-logo grow flex flex-row">
+            <div className="flex flex-col justify-center gap-3">
+              <div className="app-title">
+                <h1 className="title">Decentralize Voting</h1>
+                <h2 className="sub-title">Blockchain based technologies</h2>
+              </div>
+              <div className="button">
+                <button className="py-2 px-4 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">Connect with MetaMask</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="basis-1/2 right-side"></div>
+      <div className="basis-1/2 bg-black right-side"></div>
     </div>
   );
 };
