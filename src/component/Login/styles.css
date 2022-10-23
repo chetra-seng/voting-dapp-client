@@ -47,6 +47,7 @@
     right: 50%;
     translate: 50% -50%;
     font-family: 'Poppins', sans-serif;
+    line-height: 3em;
 }
 
 .left-side .middle-logo .app-title{
@@ -67,12 +68,13 @@
 
 /* button */
 .left-side .middle-logo button{
+    border: none;
     font-size: .75em;
     font-weight: 900;
     width: 21em;
     height: 4ch;
     border-radius: 5px;
-    background-color: #000;
+    background-color: rgb(0, 100, 240);
     color: #fff;
     text-align: center;
     margin: 30px;
@@ -80,17 +82,17 @@
 }
 
 .left-side .middle-logo button:hover{
-    border: #000 solid 1px;
+    border: none;
     background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
+    color: rgb(0, 100, 240);
     box-shadow: 0 0 5px rgba(0,0,0,.5);
-    transition: box-shadow .25s;
+    transition: all .25s;
 }
 
 /* right-side */
 .right-side{
-    border: blue solid 1px;
     flex: 0 0 50%;
+    background-color: rgb(13, 0, 30);
 }
 
 @media (max-width: 1440px) {
