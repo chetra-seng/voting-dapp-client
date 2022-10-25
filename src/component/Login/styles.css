@@ -68,10 +68,10 @@
 /* button */
 .left-side .middle-logo button{
     border: none;
-    font-size: .75em;
+    font-size: 1rem;
     font-weight: 900;
-    width: 21em;
-    height: 4ch;
+    width: 24ch;
+    height: 3ch;
     border-radius: 5px;
     background-color: rgb(51, 126, 232);
     color: #fff;
@@ -130,36 +130,60 @@
 
 @media (max-width: 700px) {
     .wrapper {
-        flex-direction: column;
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .left-side, .right-side {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        max-width: 100%;
+        max-height: 100vh;
+    }
+    .left-side {
+        z-index: 1;
+        background-color: none;
     }
     .left-side .middle-logo {
+        top: 60%;
         font-size: 1rem;
     }
+
+    .left-side .middle-logo > .app-title{
+        font-size: 1rem;
+        margin-bottom: 3rem;
+    }
+
+    .left-side .middle-logo > .app-title > .title{
+        text-align: center;
+        color:rgb(229, 255, 252);
+        margin-bottom: 1.5rem;
+    }
+
+    .left-side .middle-logo > .app-title > .sub-title{
+        text-align: center;
+        color:rgb(133, 254, 238)
+    }
+
+    .left-side .middle-logo button{
+        border-radius: 1.5em;
+    }
 }
 
-@media (max-width: 520px) {
-    .wrapper {
-        flex-direction: column;
-    }
+@media (max-width: 484px) {
     .left-side .middle-logo {
-        font-size: .85rem;
+        font-size: .7rem;
     }
-}
-
-@media (max-width: 420px) {
-    .wrapper {
-        flex-direction: column;
-    }
-    .left-side .middle-logo {
-        font-size: .75rem;
+    .left-side .middle-logo > .app-title{
+        line-height: 1.25;
     }
 }
 
 @media (max-width: 380px) {
-    .wrapper {
-        flex-direction: column;
-    }
     .left-side .middle-logo {
-        font-size: .7rem;
+        font-size: .6rem;
     }
 }

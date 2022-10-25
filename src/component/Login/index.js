@@ -15,7 +15,7 @@ const Login = () => {
               <h2 className="sub-title">The reliable voting system</h2>
             </div>
             <button>
-               Connect With Metamask Account
+               Connect With MetaMask
             </button>
           </div>
         </div>
