@@ -10,7 +10,7 @@
     @apply text-xl;
   }
   h3 {
-    @apply text-lg;
+    @apply text-lg font-semibold;
   }
   a {
     @apply text-blue-600 underline;
