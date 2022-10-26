@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+*, *::before, *::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    min-height: 100vh;
+}
+
+.left-side, .right-side {
+    padding: 1.25em;
+}
+
+/* left-side */
+.left-side{
+    flex: 0 0 50%;
+    position: relative;
+}
+
+.left-side .top-logo{
+    position: relative;
+}
+
+.left-side .top-logo{
+    padding: 0 20px;
+    font-size: 1.25em;
+    font-weight: 600;
+    color: rgb(60, 25, 82);
+}
+
+/* middle logo */
+.left-side .middle-logo{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    translate: 50% -50%;
+    font-family: 'Poppins', sans-serif;
+    line-height: 3em;
+}
+
+.left-side .middle-logo .app-title{
+    display: block;
+}
+
+.left-side .middle-logo .app-title .title{
+    font-weight: 700;
+    font-size: 3em;
+}
+
+.left-side .middle-logo .app-title .sub-title{
+    color: rgb(49, 29, 104);
+    font-size: 1.5em;
+    font-weight: 500;
+
+}
+
+/* button */
+.left-side .middle-logo button{
+    border: none;
+    font-size: .75em;
+    font-weight: 900;
+    width: 21em;
+    height: 4ch;
+    border-radius: 5px;
+    background-color: rgb(51, 126, 232);
+    color: #fff;
+    text-align: center;
+    margin: 30px;
+    cursor: pointer;
+}
+
+.left-side .middle-logo button:hover{
+    background-color: rgb(255, 255, 255);
+    color: rgb(51, 126, 232);
+    box-shadow: 0 0 5px rgba(0,0,0,.5);
+    transition: all .3s;
+}
+
+.left-side .middle-logo button:active{
+    scale: 1.025;
+}
+
+
+/* right-side */
+.right-side{
+    flex: 0 0 50%;
+    background-color: rgb(13, 0, 30);
+}
+
+@media (max-width: 1440px) {
+    .left-side .middle-logo {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 1010px) {
+    .left-side .middle-logo {
+        font-size: .85rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .left-side .middle-logo {
+        font-size: .8rem;
+    }
+}
+
+@media (max-width: 830px) {
+    .left-side .middle-logo {
+        font-size: .75rem;
+    }
+}
+
+@media (max-width: 770px) {
+    .left-side .middle-logo {
+        font-size: .65rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .wrapper {
+        flex-direction: column;
+    }
+    .left-side .middle-logo {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 520px) {
+    .wrapper {
+        flex-direction: column;
+    }
+    .left-side .middle-logo {
+        font-size: .85rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .wrapper {
+        flex-direction: column;
+    }
+    .left-side .middle-logo {
+        font-size: .75rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .wrapper {
+        flex-direction: column;
+    }
+    .left-side .middle-logo {
+        font-size: .7rem;
+    }
+}
