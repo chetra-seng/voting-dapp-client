@@ -8,6 +8,8 @@ const Web3Provider = ({ children }) => {
   const web3 = useWeb3();
   const [address, setAddress] = useState(null);
   const [hasMetaMask, setHasMetaMask] = useState(true);
+  const [chainId, setChainId] = useState(null);
+
   const options = useMemo(() => {
     return {
       autoClose: 2000,
@@ -23,6 +25,9 @@ const Web3Provider = ({ children }) => {
       window.ethereum.on("accountsChanged", (accounts) => {
         setAddress(accounts[0]);
       });
+      window.ethereum.on("chainChanged", (chainId) => {
+        setChainId(chainId);
+      });
     } else {
       setHasMetaMask(false);
     }
@@ -30,6 +35,9 @@ const Web3Provider = ({ children }) => {
     return () => {
       window.removeEventListener("accountsChanged", (accounts) => {
         setAddress(accounts[0]);
+      });
+      window.removeEventListener("chainChanged", (chainId) => {
+        setChainId(chainId);
       });
     };
   }, [hasMetaMask]);
@@ -45,19 +53,21 @@ const Web3Provider = ({ children }) => {
 
   useEffect(() => {
     if (hasMetaMask) {
+      getChainId();
       isUnlocked();
       setTimeout(() => {
         const addr = window.ethereum.selectedAddress;
         setAddress(addr);
-      }, 200);
+      }, 50);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const chainId = async () => {
+  const getChainId = async () => {
     if (hasMetaMask) {
       try {
-        return await window.ethereum.request({ method: "eth_chainId" });
+        const res = await window.ethereum.request({ method: "eth_chainId" });
+        setChainId(res);
       } catch (err) {
         console.log(err);
       }
@@ -73,6 +83,7 @@ const Web3Provider = ({ children }) => {
         if (addresses.length > 0) {
           setAddress(addresses[0]);
         }
+        toast.success("Connect wallet successful", options);
       } catch (err) {
         console.log(err);
         if (err?.code) {
@@ -92,29 +103,29 @@ const Web3Provider = ({ children }) => {
   };
 
   const addNetwork = async () => {
-    if(hasMetaMask) { 
-      try{
+    if (hasMetaMask) {
+      try {
         await window.ethereum.request({
-          method: "wallet_addEthereumChain", params: [
+          method: "wallet_addEthereumChain",
+          params: [
             {
               chainId: `0x${networkConfig.chainId.toString(16)}`,
               chainName: networkConfig.chainName,
               nativeCurrency: {
                 name: networkConfig.currencyName,
                 symbol: networkConfig.currencySymbol,
-                decimals: networkConfig.currencyDecimals
+                decimals: networkConfig.currencyDecimals,
               },
               rpcUrls: [networkConfig.rpcUrl],
-              blockExplorerUrls: [networkConfig.blockExplorer]
-            }
-          ]
-        })
-      }
-      catch(err){
+              blockExplorerUrls: [networkConfig.blockExplorer],
+            },
+          ],
+        });
+      } catch (err) {
         toast.err(err.message, options);
       }
     }
-  }
+  };
 
   const switchToCamDLNetwork = async () => {
     if (hasMetaMask) {
@@ -126,8 +137,10 @@ const Web3Provider = ({ children }) => {
           params: [{ chainId: camdlChain }],
         });
         console.log(res);
+        toast.success("Login Successful", options);
       } catch (err) {
         console.log(err);
+        toast.error("Login Failed", options);
       }
     } else {
       toast.error("Please install MetaMask", {
