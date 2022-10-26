@@ -10,7 +10,7 @@ const Login = () => {
     <div>
       <div className = "wrapper">
         <div className="left-side">
-          <div className="top-logo">
+          <div className="top-logo flex gap-4">
           <img className="w-8 h-8" src={Logo} alt="App logo" />
           <span>Decentralize Voting</span> 
           </div>

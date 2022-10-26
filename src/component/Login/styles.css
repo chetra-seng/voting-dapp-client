@@ -28,7 +28,7 @@
 }
 
 .left-side .top-logo{
-    padding: 0 20px;
+    /* padding: 0 20px; */
     font-size: 1.25em;
     font-weight: 600;
     color: rgb(60, 25, 82);
@@ -46,7 +46,8 @@
     right: 50%;
     translate: 50% -50%;
     font-family: 'Poppins', sans-serif;
-    line-height: 3em;
+    line-height: 1.5;
+    margin: 2em 0;
 }
 
 .left-side .middle-logo .app-title{
@@ -68,16 +69,16 @@
 /* button */
 .left-side .middle-logo button{
     border: none;
-    font-size: .75em;
+    font-size: 1rem;
     font-weight: 900;
-    width: 21em;
-    height: 4ch;
+    width: 24ch;
     border-radius: 5px;
     background-color: rgb(51, 126, 232);
     color: #fff;
     text-align: center;
     margin: 30px;
     cursor: pointer;
+    padding: .35rem;
 }
 
 .left-side .middle-logo button:hover{
@@ -104,62 +105,85 @@
     }
 }
 
-@media (max-width: 1010px) {
+@media (max-width: 1250px) {
     .left-side .middle-logo {
         font-size: .85rem;
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1060px) {
     .left-side .middle-logo {
         font-size: .8rem;
     }
 }
 
-@media (max-width: 830px) {
+@media (max-width: 980px) {
     .left-side .middle-logo {
-        font-size: .75rem;
+        font-size: .7rem;
     }
 }
 
-@media (max-width: 770px) {
+@media (max-width: 870px) {
     .left-side .middle-logo {
         font-size: .65rem;
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
     .wrapper {
-        flex-direction: column;
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .left-side, .right-side {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        max-width: 100%;
+        max-height: 100vh;
+    }
+    .left-side {
+        z-index: 1;
+        background-color: none;
     }
     .left-side .middle-logo {
+        top: 60%;
         font-size: 1rem;
     }
+
+    .left-side .middle-logo > .app-title{
+        font-size: 1rem;
+    }
+
+    .left-side .middle-logo > .app-title > .title{
+        text-align: center;
+        color:rgb(255, 255, 255);
+        margin-bottom: 1.5rem;
+    }
+
+    .left-side .middle-logo > .app-title > .sub-title{
+        text-align: center;
+        color:rgba(255, 255, 255, 0.85);
+    }
+
+    .left-side .middle-logo button{
+        border-radius: 1.5rem;
+    }
 }
 
-@media (max-width: 520px) {
-    .wrapper {
-        flex-direction: column;
-    }
-    .left-side .middle-logo {
-        font-size: .85rem;
-    }
-}
-
-@media (max-width: 420px) {
-    .wrapper {
-        flex-direction: column;
-    }
-    .left-side .middle-logo {
-        font-size: .75rem;
-    }
-}
-
-@media (max-width: 380px) {
-    .wrapper {
-        flex-direction: column;
-    }
+@media (max-width: 608px) {
     .left-side .middle-logo {
         font-size: .7rem;
+    }
+    .left-side .middle-logo > .app-title > .title{
+        line-height: 1.55;
+    }
+}
+
+@media (max-width: 410px) {
+    .left-side .middle-logo {
+        font-size: .5em;
     }
 }
