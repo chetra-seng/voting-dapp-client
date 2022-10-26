@@ -28,7 +28,7 @@
 }
 
 .left-side .top-logo{
-    padding: 0 20px;
+    /* padding: 0 20px; */
     font-size: 1.25em;
     font-weight: 600;
     color: rgb(60, 25, 82);
@@ -46,7 +46,8 @@
     right: 50%;
     translate: 50% -50%;
     font-family: 'Poppins', sans-serif;
-    line-height: 3em;
+    line-height: 1.5;
+    margin: 2em 0;
 }
 
 .left-side .middle-logo .app-title{
@@ -71,13 +72,13 @@
     font-size: 1rem;
     font-weight: 900;
     width: 24ch;
-    height: 3ch;
     border-radius: 5px;
     background-color: rgb(51, 126, 232);
     color: #fff;
     text-align: center;
     margin: 30px;
     cursor: pointer;
+    padding: .35rem;
 }
 
 .left-side .middle-logo button:hover{
@@ -104,31 +105,31 @@
     }
 }
 
-@media (max-width: 1010px) {
+@media (max-width: 1250px) {
     .left-side .middle-logo {
         font-size: .85rem;
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1060px) {
     .left-side .middle-logo {
         font-size: .8rem;
     }
 }
 
-@media (max-width: 830px) {
+@media (max-width: 980px) {
     .left-side .middle-logo {
-        font-size: .75rem;
+        font-size: .7rem;
     }
 }
 
-@media (max-width: 770px) {
+@media (max-width: 870px) {
     .left-side .middle-logo {
         font-size: .65rem;
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 800px) {
     .wrapper {
         display: block;
         position: relative;
@@ -154,7 +155,6 @@
 
     .left-side .middle-logo > .app-title{
         font-size: 1rem;
-        margin-bottom: 3rem;
     }
 
     .left-side .middle-logo > .app-title > .title{
@@ -169,21 +169,21 @@
     }
 
     .left-side .middle-logo button{
-        border-radius: 1.5em;
+        border-radius: 1.5rem;
     }
 }
 
-@media (max-width: 484px) {
+@media (max-width: 608px) {
     .left-side .middle-logo {
         font-size: .7rem;
     }
-    .left-side .middle-logo > .app-title{
-        line-height: 1.25;
+    .left-side .middle-logo > .app-title > .title{
+        line-height: 1.55;
     }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 410px) {
     .left-side .middle-logo {
-        font-size: .6rem;
+        font-size: .5em;
     }
 }
