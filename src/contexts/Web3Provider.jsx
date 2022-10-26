@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useMemo, useState } from "react";
 import { toast } from "react-toastify";
 import useWeb3 from "../hooks/useWeb3";
+import networkConfig from "../assets/config/network.json";
 
 export const Web3Context = createContext();
 const Web3Provider = ({ children }) => {
@@ -92,7 +93,7 @@ const Web3Provider = ({ children }) => {
 
   const switchToCamDLNetwork = async () => {
     if (hasMetaMask) {
-      const camdlChain = web3.utils.toHex(process.env.REACT_APP_CHAIN_ID);
+      const camdlChain = web3.utils.toHex(networkConfig.chainId);
       try {
         const res = await window.ethereum.request({
           method: "wallet_switchEthereumChain",
