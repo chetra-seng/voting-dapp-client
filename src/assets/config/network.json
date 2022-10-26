@@ -1,5 +1,9 @@
 {
     "chainId": 195,
+    "chainName": "CamDL",
+    "currencyName": "CADL",
+    "currencySymbol": "CADL",
+    "currencyDecimals": 18,
     "rpcUrl": "https://rpc1.testnet.camdl.gov.kh",
     "blockExplorer": "https://explorer.testnet.camdl.gov.kh"
 }
