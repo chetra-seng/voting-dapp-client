@@ -41,3 +41,11 @@ git push -u origin your_name
 ```
 6. Create a pull request <br />
 Go to GitHub and create pull request on our repository.
+
+### Provide environment variables for react app
+Create a file called `.env`, paste and saved the content below
+```
+REACT_APP_CHAIN_ID=195
+REACT_APP_RPC_URL=https://rpc1.testnet.camdl.gov.kh
+REACT_APP_BLOCK_EXPLORER=https://explorer.testnet.camdl.gov.kh/
+```
