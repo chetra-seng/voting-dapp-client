@@ -159,13 +159,13 @@
 
     .left-side .middle-logo > .app-title > .title{
         text-align: center;
-        color:rgb(229, 255, 252);
+        color:rgb(255, 255, 255);
         margin-bottom: 1.5rem;
     }
 
     .left-side .middle-logo > .app-title > .sub-title{
         text-align: center;
-        color:rgb(133, 254, 238)
+        color:rgba(255, 255, 255, 0.85);
     }
 
     .left-side .middle-logo button{
