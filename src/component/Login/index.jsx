@@ -4,7 +4,7 @@ import Logo from "./../../assets/images/blockchain.png";
 import "./styles.css"
 const Login = () => {
 
-  const { connectWallet } = useContext(Web3Context);
+  const { switchToCamDLNetwork } = useContext(Web3Context);
 
   return (
     <div>
@@ -19,7 +19,7 @@ const Login = () => {
               <h1 className="title">Decentralize Voting</h1>
               <h2 className="sub-title">Blockchain based technologies</h2>
             </div>
-            <button onClick={connectWallet}>
+            <button onClick={switchToCamDLNetwork}>
                Connect With Metamask
             </button>
           </div>
