@@ -91,8 +91,34 @@ const Web3Provider = ({ children }) => {
     }
   };
 
+  const addNetwork = async () => {
+    if(hasMetaMask) { 
+      try{
+        await window.ethereum.request({
+          method: "wallet_addEthereumChain", params: [
+            {
+              chainId: `0x${networkConfig.chainId.toString(16)}`,
+              chainName: networkConfig.chainName,
+              nativeCurrency: {
+                name: networkConfig.currencyName,
+                symbol: networkConfig.currencySymbol,
+                decimals: networkConfig.currencyDecimals
+              },
+              rpcUrls: [networkConfig.rpcUrl],
+              blockExplorerUrls: [networkConfig.blockExplorer]
+            }
+          ]
+        })
+      }
+      catch(err){
+        toast.err(err.message, options);
+      }
+    }
+  }
+
   const switchToCamDLNetwork = async () => {
     if (hasMetaMask) {
+      await addNetwork();
       const camdlChain = web3.utils.toHex(networkConfig.chainId);
       try {
         const res = await window.ethereum.request({
