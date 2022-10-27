@@ -1,9 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Web3Context } from "../../contexts/Web3Provider";
 import Logo from "./../../assets/images/blockchain.png";
+import networkConfig from "../../assets/config/network.json";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const { switchToCamDLNetwork } = useContext(Web3Context);
+  const { switchToCamDLNetwork, chainId } = useContext(Web3Context);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(chainId && chainId === `0x${networkConfig.chainId.toString(16)}`){
+      navigate("/");
+    }
+  }, [chainId, navigate]);
+
 
   return (
     <>

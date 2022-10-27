@@ -25,7 +25,7 @@ const Layout = ({ children }) => {
           </div>
         </div>
       </div>
-      <div className="basis-1/4 p-20 main-content">{children}</div>
+      <div className="basis-4/5 p-20 main-content">{children}</div>
       <img src={User} alt="User icon" className={"absolute top-5 right-5 h-10 w-10"} />
     </div>
   );
