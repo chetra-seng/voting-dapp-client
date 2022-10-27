@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+*, *::before, *::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    min-height: 100vh;
+}
+
+.left-side, .right-side {
+    padding: 1.25em;
+}
+
+/* left-side */
+.left-side{
+    flex: 0 0 50%;
+    position: relative;
+}
+
+.left-side .top-logo{
+    position: relative;
+}
+
+.left-side .top-logo{
+    /* padding: 0 20px; */
+    font-size: 1.25em;
+    font-weight: 600;
+    color: rgb(60, 25, 82);
+}
+
+/* middle logo */
+.left-side .middle-logo{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    translate: 50% -50%;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.5;
+    margin: 2em 0;
+}
+
+.left-side .middle-logo .app-title{
+    display: block;
+}
+
+.left-side .middle-logo .app-title .title{
+    font-weight: 700;
+    font-size: 3em;
+}
+
+.left-side .middle-logo .app-title .sub-title{
+    color: rgb(49, 29, 104);
+    font-size: 1.5em;
+    font-weight: 500;
+
+}
+
+/* button */
+.left-side .middle-logo button{
+    border: none;
+    font-size: 1rem;
+    font-weight: 900;
+    width: 24ch;
+    border-radius: 5px;
+    background-color: rgb(51, 126, 232);
+    color: #fff;
+    text-align: center;
+    margin: 30px;
+    cursor: pointer;
+    padding: .35rem;
+}
+
+.left-side .middle-logo button:hover{
+    background-color: rgb(255, 255, 255);
+    color: rgb(51, 126, 232);
+    box-shadow: 0 0 5px rgba(0,0,0,.5);
+    transition: all .3s;
+}
+
+.left-side .middle-logo button:active{
+    scale: 1.025;
+}
+
+
+/* right-side */
+.right-side{
+    flex: 0 0 50%;
+    background-color: rgb(13, 0, 30);
+}
+
+@media (max-width: 1440px) {
+    .left-side .middle-logo {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 1250px) {
+    .left-side .middle-logo {
+        font-size: .85rem;
+    }
+}
+
+@media (max-width: 1060px) {
+    .left-side .middle-logo {
+        font-size: .8rem;
+    }
+}
+
+@media (max-width: 980px) {
+    .left-side .middle-logo {
+        font-size: .7rem;
+    }
+}
+
+@media (max-width: 870px) {
+    .left-side .middle-logo {
+        font-size: .65rem;
+    }
+}
+
+@media (max-width: 800px) {
+    .wrapper {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .left-side, .right-side {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        max-width: 100%;
+        max-height: 100vh;
+    }
+    .left-side {
+        z-index: 1;
+        background-color: none;
+    }
+    .left-side .middle-logo {
+        top: 60%;
+        font-size: 1rem;
+    }
+
+    .left-side .middle-logo > .app-title{
+        font-size: 1rem;
+    }
+
+    .left-side .middle-logo > .app-title > .title{
+        text-align: center;
+        color:rgb(255, 255, 255);
+        margin-bottom: 1.5rem;
+    }
+
+    .left-side .middle-logo > .app-title > .sub-title{
+        text-align: center;
+        color:rgba(255, 255, 255, 0.85);
+    }
+
+    .left-side .middle-logo button{
+        border-radius: 1.5rem;
+    }
+}
+
+@media (max-width: 608px) {
+    .left-side .middle-logo {
+        font-size: .7rem;
+    }
+    .left-side .middle-logo > .app-title > .title{
+        line-height: 1.55;
+    }
+}
+
+@media (max-width: 410px) {
+    .left-side .middle-logo {
+        font-size: .5em;
+    }
+}
