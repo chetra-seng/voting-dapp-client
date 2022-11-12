@@ -4,7 +4,8 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { useState } from "react";
 import Logo from "../../assets/images/blockchain.png";
 import User from "../../assets/images/user.png";
-
+import dashboard from "../../assets/images/dashboard.png";
+import graph from "../../assets/images/graph.png";
 const Layout = ({ children }) => {
 
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -18,7 +19,7 @@ const Layout = ({ children }) => {
         }
       </div>
       { toggleMenu && (
-      <div className={"absolute left-0 top-0 z-10 rounded-md basis-1/5 backdrop-blur-md md:hidden h-screen flex flex-col gap-10 bg-primary-dark animate-slide"}>
+      <div className={"absolute left-0 top-0 z-10 rounded-md basis-1/5 bg-primary-dark md:hidden h-screen flex flex-col gap-10 animate-slide"}>
         <AiOutlineClose fontSize={20} className='absolute right-1 top-1 text-slate-100  cursor-pointer' onClick={() => setToggleMenu(false)} />
         <div className="flex flex-row min-w-max gap-3 text-white logo mx-5 py-5">
           <img className="w-8 h-8" src={Logo} alt="App logo" />
@@ -26,11 +27,11 @@ const Layout = ({ children }) => {
         </div>
         <div className="flex flex-col gap-3 text-white grow sidebar-item">
           <div onClick={() => setMenuIndicator(true) } className={"flex flex-row justify-start gap-3 h-10 items-center px-3 transition-all" + (menuIndicator ? " bg-primary-100" : null)}>
-            <input type={"checkbox"} disabled className="w-5 h-5" />
+            <img src={dashboard} className="w-4 h-4" />
             <h3>Dashboard</h3>
           </div>
           <div onClick={() => setMenuIndicator(false) } className={"flex flex-row justify-start gap-3 h-10 items-center px-3 transition-all" + (menuIndicator ? null : " bg-primary-100")}>
-            <input type={"checkbox"} disabled className="w-5 h-5" />
+          <img src={graph} className="w-5 h-5" />
             <h3>Finished Votes</h3>
           </div>
         </div>
@@ -42,13 +43,13 @@ const Layout = ({ children }) => {
           <img className="w-8 h-8" src={Logo} alt="App logo" />
           <h3 className="tracking-widest">Decentralize Voting</h3>
         </div>
-        <div className="flex flex-col gap-3 text-white grow mx-auto my-auto tracking-wide sidebar-item">
-          <div className="flex flex-row gap-3 items-center active:bg-primary-100">
-            <input type={"checkbox"} disabled className="w-5 h-5" />
+        <div className="flex flex-col gap-3 text-white grow sidebar-item">
+          <div onClick={() => setMenuIndicator(true) } className={"flex flex-row justify-start gap-3 h-10 items-center px-3 transition-all" + (menuIndicator ? " bg-primary-100" : null)}>
+            <img src={dashboard} className="w-4 h-4" />
             <h3>Dashboard</h3>
           </div>
-          <div className="flex flex-row gap-3 items-center active:bg-primary-100">
-            <input type={"checkbox"} disabled className="w-5 h-5" />
+          <div onClick={() => setMenuIndicator(false) } className={"flex flex-row justify-start gap-3 h-10 items-center px-3 transition-all" + (menuIndicator ? null : " bg-primary-100")}>
+          <img src={graph} className="w-5 h-5" />
             <h3>Finished Votes</h3>
           </div>
         </div>
