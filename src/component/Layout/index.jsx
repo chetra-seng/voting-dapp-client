@@ -1,35 +1,53 @@
 import React from "react";
-import { useEffect } from "react";
+import { HiMenuAlt4 } from 'react-icons/hi';
+import { AiOutlineClose } from 'react-icons/ai';
 import { useState } from "react";
 import Logo from "../../assets/images/blockchain.png";
 import User from "../../assets/images/user.png";
 
 const Layout = ({ children }) => {
 
-  const [toggle, setToggle] = useState(true);
-
+  const [toggleMenu, setToggleMenu] = useState(false);
+  const [menuIndicator, setMenuIndicator] = useState(false);
   return (
-    <div className="relative flex flex-row min-h-screen">
-      <div className={"absolute w-9 h-5 left-5 top-5 hover:cursor-pointer md:hidden " + (toggle ? null : "left-1/2")} onClick={() => setToggle(!toggle)}>
-        <div className="absolute top-0 w-full h-1 bg-slate-800"></div>
-        <div className="absolute top-1/2 w-full h-1 bg-slate-800"></div>
-        <div className="absolute top-full w-full h-1 bg-slate-800"></div>
+    <div className="relative flex flex-row h-screen min-h-screen">
+      <div className="absolute left-3 top-3 md:hidden">
+        { toggleMenu 
+           ? null
+           : <HiMenuAlt4 fontSize={50} className='text-slate-800 cursor-pointer' onClick={() => setToggleMenu(true)} />
+        }
       </div>
-      <div className={"basis-1/5 h-screen flex flex-col gap-10 bg-black " + (toggle ? "max-md:hidden" : null)}>
+      { toggleMenu && (
+      <div className={"absolute left-0 top-0 z-10 rounded-md basis-1/5 backdrop-blur-md md:hidden h-screen flex flex-col gap-10 bg-primary-dark animate-slide"}>
+        <AiOutlineClose fontSize={20} className='absolute right-1 top-1 text-slate-100  cursor-pointer' onClick={() => setToggleMenu(false)} />
         <div className="flex flex-row min-w-max gap-3 text-white logo mx-5 py-5">
           <img className="w-8 h-8" src={Logo} alt="App logo" />
           <h3 className="tracking-widest">Decentralize Voting</h3>
         </div>
-        <div className="flex flex-col gap-3 text-white mx-auto grow my-auto tracking-wide sidebar-item">
-          <div className="flex flex-row gap-3 items-center">
+        <div className="flex flex-col gap-3 text-white grow sidebar-item">
+          <div onClick={() => setMenuIndicator(true) } className={"flex flex-row justify-start gap-3 h-10 items-center px-3 transition-all" + (menuIndicator ? " bg-primary-100" : null)}>
             <input type={"checkbox"} disabled className="w-5 h-5" />
             <h3>Dashboard</h3>
           </div>
-          <div className="flex flex-row gap-3 items-center">
+          <div onClick={() => setMenuIndicator(false) } className={"flex flex-row justify-start gap-3 h-10 items-center px-3 transition-all" + (menuIndicator ? null : " bg-primary-100")}>
             <input type={"checkbox"} disabled className="w-5 h-5" />
-            <h3>On going votes</h3>
+            <h3>Finished Votes</h3>
           </div>
-          <div className="flex flex-row gap-3 items-center">
+        </div>
+      </div>
+      )}
+
+      <div className={"basis-1/5 h-screen max-md:hidden flex flex-col gap-10 bg-black "}>
+        <div className="flex flex-row min-w-max gap-3 text-white logo mx-5 py-5">
+          <img className="w-8 h-8" src={Logo} alt="App logo" />
+          <h3 className="tracking-widest">Decentralize Voting</h3>
+        </div>
+        <div className="flex flex-col gap-3 text-white grow mx-auto my-auto tracking-wide sidebar-item">
+          <div className="flex flex-row gap-3 items-center active:bg-primary-100">
+            <input type={"checkbox"} disabled className="w-5 h-5" />
+            <h3>Dashboard</h3>
+          </div>
+          <div className="flex flex-row gap-3 items-center active:bg-primary-100">
             <input type={"checkbox"} disabled className="w-5 h-5" />
             <h3>Finished Votes</h3>
           </div>

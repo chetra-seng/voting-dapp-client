@@ -2,24 +2,19 @@ import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Web3Context } from "../../contexts/Web3Provider";
 import ConnectWallet from "../ConnectWallet";
-import CreateNewVote from "../CreateNewVote";
-import StartSession from "../StartSession";
 import Layout from "../Layout";
 import networkConfig from "../../assets/config/network.json";
 import Plus from "../../assets/images/plus.png";
-import { useState } from "react";
-
+import InRegistrationVote from "../owner/InRegistrationVote";
 const Home = () => {
   const { address, chainId, connectWallet } = useContext(Web3Context);
   const navigate = useNavigate();
-  const [createTopic, setCreateTopic] = useState(false);
 
   useEffect(() => {
     if (chainId && chainId !== `0x${networkConfig.chainId.toString(16)}`) {
       navigate("/login");
     }
   }, [chainId, navigate]);
-
 
   return (
     <Layout>
@@ -34,18 +29,16 @@ const Home = () => {
               <div className="flex flex-col px-5 py-10 border rounded-md text-center items-center">
                 <h3 className="mb-6">Create new vote</h3>
                 <p className="mb-1">Add a new vote topic</p>
-                <button className="text-white bg-slate-800 hover:text-slate-50 active:ring-4 active:outline-none active:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 mr-2 mb-2 gap-3" onClick = {() => { setCreateTopic(!createTopic)} }>
+                <button className="text-white bg-slate-800 hover:text-slate-50 active:ring-4 active:outline-none active:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 mr-2 mb-2 gap-3">
                   <img src={Plus} alt="Test" className="w-5 h-5" />
-                  New Vote
+                  Create a topic
                 </button>
-              </div>
-              { createTopic ? (<div className="backdrop-blur-xl relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"><CreateNewVote/></div>) : null }
             </div>
-            
+            { true ? (<div className="backdrop-blur-xl relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"><InRegistrationVote vote_title='fsdfasdfasdf'/></div>) : null }
+            </div>
           ) : (
             <ConnectWallet connectWallet={connectWallet} />
           )}
-          
         </div>
       </div>
     </Layout>
