@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [menuIndicator, setMenuIndicator] = useState(false);
   return (
-    <div className="relative flex flex-row h-screen min-h-screen">
+    <div className="relative flex flex-row h-screen">
       <div className="absolute left-3 top-3 md:hidden">
         { toggleMenu 
            ? null
