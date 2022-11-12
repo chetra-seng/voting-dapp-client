@@ -5,11 +5,12 @@ import ConnectWallet from "../ConnectWallet";
 import Layout from "../Layout";
 import networkConfig from "../../assets/config/network.json";
 import Plus from "../../assets/images/plus.png";
-import InRegistrationVote from "../owner/InRegistrationVote";
+import SubmitVote from "../Admin/SubmitVote"; 
+import { useState } from "react";
 const Home = () => {
   const { address, chainId, connectWallet } = useContext(Web3Context);
   const navigate = useNavigate();
-
+  const [options, setOptions] = useState(["111", "222", "333"]);
   useEffect(() => {
     if (chainId && chainId !== `0x${networkConfig.chainId.toString(16)}`) {
       navigate("/login");
@@ -17,6 +18,7 @@ const Home = () => {
   }, [chainId, navigate]);
 
   return (
+
     <Layout>
       <div className="flex h-full">
         <div className="m-auto">
@@ -34,7 +36,7 @@ const Home = () => {
                   Create a topic
                 </button>
             </div>
-            { true ? (<div className="backdrop-blur-xl relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"><InRegistrationVote vote_title='fsdfasdfasdf'/></div>) : null }
+            { true ? (<div className="backdrop-blur-xl relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"><SubmitVote vote_title="What is the best design tool?" /></div>) : null }
             </div>
           ) : (
             <ConnectWallet connectWallet={connectWallet} />
