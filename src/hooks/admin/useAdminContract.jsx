@@ -1,6 +1,6 @@
-import useWeb3 from "./useWeb3";
-import contractConfig from "../assets/config/contract.json";
-import adminAbi from "../contract/admin/admin.json";
+import useWeb3 from "../web3/useWeb3";
+import contractConfig from "../../assets/config/contract.json";
+import adminAbi from "./admin.json";
 
 const useAdminContract = () => {
   const web3 = useWeb3();

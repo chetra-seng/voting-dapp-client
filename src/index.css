@@ -41,6 +41,14 @@
   .inter-small {
     @apply font-medium text-sm
   }
+
+  .nav-item {
+    @apply flex flex-row justify-start gap-3 h-10 items-center px-3 transition-all
+  }
+
+  .primary-btn {
+    @apply flex items-center justify-center gap-2 w-full rounded-md text-slate-100 bg-[#337ee8] hover:bg-[#337ee8]/90 hover:text-white hover:shadow-md active:scale-[.99] active:bg-[#337ee8]/70 cursor-pointer p-2
+  }
 }
 
 body {
