@@ -27,11 +27,11 @@ const Layout = ({ children }) => {
         </div>
         <div className="flex flex-col gap-3 text-white grow sidebar-item">
           <div onClick={() => setMenuIndicator(true) } className={"flex flex-row justify-start gap-3 h-10 items-center px-3 transition-all" + (menuIndicator ? " bg-primary-100" : null)}>
-            <img src={dashboard} className="w-4 h-4" />
+            <img src={dashboard} className="w-4 h-4" alt="Dashboard icon"/>
             <h3>Dashboard</h3>
           </div>
           <div onClick={() => setMenuIndicator(false) } className={"flex flex-row justify-start gap-3 h-10 items-center px-3 transition-all" + (menuIndicator ? null : " bg-primary-100")}>
-          <img src={graph} className="w-5 h-5" />
+          <img src={graph} className="w-5 h-5" alt="Vote icon"/>
             <h3>Finished Votes</h3>
           </div>
         </div>
@@ -45,11 +45,11 @@ const Layout = ({ children }) => {
         </div>
         <div className="flex flex-col gap-3 text-white grow sidebar-item">
           <div onClick={() => setMenuIndicator(true) } className={"flex flex-row justify-start gap-3 h-10 items-center px-3 transition-all" + (menuIndicator ? " bg-primary-100" : null)}>
-            <img src={dashboard} className="w-4 h-4" />
+            <img src={dashboard} className="w-4 h-4" alt="Dashboard icon"/>
             <h3>Dashboard</h3>
           </div>
           <div onClick={() => setMenuIndicator(false) } className={"flex flex-row justify-start gap-3 h-10 items-center px-3 transition-all" + (menuIndicator ? null : " bg-primary-100")}>
-          <img src={graph} className="w-5 h-5" />
+          <img src={graph} className="w-5 h-5" alt="Vote icon" />
             <h3>Finished Votes</h3>
           </div>
         </div>
