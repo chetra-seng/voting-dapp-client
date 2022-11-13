@@ -117,7 +117,7 @@ const Web3Provider = ({ children }) => {
                 decimals: networkConfig.currencyDecimals,
               },
               rpcUrls: [networkConfig.rpcUrl],
-              blockExplorerUrls: [networkConfig.blockExplorer],
+              // blockExplorerUrls: [networkConfig.blockExplorer],
             },
           ],
         });
