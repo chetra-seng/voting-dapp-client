@@ -44,7 +44,6 @@ const Home = () => {
   }
 
   return (
-
     <Layout>
       <div className="flex h-full">
         <div className="m-auto">
@@ -55,14 +54,13 @@ const Home = () => {
                 <p>{address}</p>
               </div>
               <div className="flex flex-col px-5 py-10 border rounded-md text-center items-center">
-                <h3 className="mb-6">Create new vote</h3>
-                <p className="mb-1">Add a new vote topic</p>
-                <button className="text-white bg-slate-800 hover:text-slate-50 active:ring-4 active:outline-none active:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 mr-2 mb-2 gap-3">
+                <h3>Create new vote</h3>
+                <p>Add a new vote topic</p>
+                <button className="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 mr-2 mb-2 gap-3">
                   <img src={Plus} alt="Test" className="w-5 h-5" />
                   Create a topic
                 </button>
-            </div>
-            { true ? (<div className="backdrop-blur-xl relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"><VotedResult id="1" topic="What is the best design tool?" vote_count="3000" /></div>) : null }
+              </div>
             </div>
           ) : (
             <ConnectWallet connectWallet={connectWallet} />
