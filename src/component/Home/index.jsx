@@ -53,11 +53,11 @@ const Home = () => {
         <div className="m-auto">
           {address ? (
             <div className="flex flex-col gap-5">
-              <div className="flex flex-col p-5 border rounded-md text-center">
-                {owner? "You're owner": "You are gay bro"}
+              <div className="flex flex-col p-5 border rounded-md text-center shadow-md">
+                <h1 className="font-semibold text-sm">{owner? "You're owner": "You are gay bro"}</h1>
                 <div className="flex flex-row gap-3">
                   <p className="font-md text-sm text-gray-600">{address}</p>
-                  <img onClick={() => copyToClipboard(address)} src={Copy} className="w-5 h-5 p-1 hover:border hover:border-primary-dark" />
+                  <img onClick={() => copyToClipboard(address)} src={Copy} className="w-5 h-5 p-[2px] hover:border hover:border-primary-dark hover:rounded-sm active:border-none" />
                 </div>
                
               </div>
