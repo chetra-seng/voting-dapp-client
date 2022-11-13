@@ -7,7 +7,7 @@ import networkConfig from "../../assets/config/network.json";
 import Plus from "../../assets/images/plus.png";
 import useAdminContract from "../../hooks/useAdminContract";
 import useWeb3 from "../../hooks/useWeb3";
-
+import Copy from "../../assets/images/copy.png";
 const Home = () => {
   const { address, chainId, connectWallet } = useContext(Web3Context);
   const navigate = useNavigate();
@@ -43,22 +43,29 @@ const Home = () => {
     }
   }
 
+  function copyToClipboard(address) {
+    navigator.clipboard.writeText(address);
+  };
+
   return (
     <Layout>
       <div className="flex h-full">
         <div className="m-auto">
           {address ? (
             <div className="flex flex-col gap-5">
-              <div className="flex flex-col p-5 border rounded-md text-center">
-                {owner? "You're owner": "You are gay bro"}
-                <p>{address}</p>
+              <div className="flex flex-col p-5 border rounded-md text-center shadow-md">
+                <h1 className="font-semibold text-sm">{owner? "You're owner": "You are gay bro"}</h1>
+                <div className="flex flex-row gap-3">
+                  <p className="font-md text-sm text-gray-600">{address}</p>
+                  <img onClick={() => copyToClipboard(address)} src={Copy} className="w-5 h-5 p-[2px] hover:border hover:border-primary-dark hover:rounded-sm active:border-none" />
+                </div>
               </div>
-              <div className="flex flex-col px-5 py-10 border rounded-md text-center items-center">
-                <h3>Create new vote</h3>
-                <p>Add a new vote topic</p>
-                <button className="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 mr-2 mb-2 gap-3">
-                  <img src={Plus} alt="Test" className="w-5 h-5" />
-                  Create a topic
+              <div className="flex flex-col gap-2 px-5 py-10 border rounded-md text-center items-center shadow-md">
+                <h3 className="font-semibold text-xl">Create new vote</h3>
+                <p className="font-md text-sm text-slate-800">Add a new vote topic</p>
+                <button className="flex items-center justify-center gap-2 w-full rounded-md text-slate-100 bg-[#337ee8] hover:bg-[#337ee8]/90 hover:text-white hover:shadow-md active:scale-[.99] active:bg-[#337ee8]/70 cursor-pointer p-2">
+                  <img src={Plus} className="w-3 h-3" />
+                  <span>Create a topic</span>
                 </button>
               </div>
             </div>
