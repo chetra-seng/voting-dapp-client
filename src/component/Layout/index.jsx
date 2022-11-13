@@ -1,26 +1,27 @@
 import React from "react";
-import { HiMenuAlt4 } from 'react-icons/hi';
-import { AiOutlineClose } from 'react-icons/ai';
+import { BiMenuAltLeft } from 'react-icons/bi';
+import { BiArrowFromRight } from 'react-icons/bi';
 import { useState } from "react";
 import Logo from "../../assets/images/blockchain.png";
 import User from "../../assets/images/user.png";
 import dashboard from "../../assets/images/dashboard.png";
 import graph from "../../assets/images/graph.png";
+
 const Layout = ({ children }) => {
 
   const [toggleMenu, setToggleMenu] = useState(false);
   const [menuIndicator, setMenuIndicator] = useState(false);
   return (
-    <div className="relative flex flex-row h-screen">
+    <div className="relative flex flex-row h-screen w-full">
       <div className="absolute left-3 top-3 md:hidden">
         { toggleMenu 
            ? null
-           : <HiMenuAlt4 fontSize={50} className='text-slate-800 cursor-pointer' onClick={() => setToggleMenu(true)} />
+           : <BiMenuAltLeft fontSize={50} className='text-primary-dark cursor-pointer' onClick={() => setToggleMenu(true)} />
         }
       </div>
       { toggleMenu && (
-      <div className={"absolute left-0 top-0 z-10 rounded-md basis-1/5 bg-primary-dark md:hidden h-screen flex flex-col gap-10 animate-slide"}>
-        <AiOutlineClose fontSize={20} className='absolute right-1 top-1 text-slate-100  cursor-pointer' onClick={() => setToggleMenu(false)} />
+      <div className={"absolute left-0 top-0 z-10 rounded-r-md basis-1/5 bg-primary-dark md:hidden h-screen flex flex-col gap-10 animate-slide"}>
+        <BiArrowFromRight fontSize={35} className='absolute -right-8 top-1 text-primary-dark  cursor-pointer' onClick={() => setToggleMenu(false)} />
         <div className="flex flex-row min-w-max gap-3 text-white logo mx-5 py-5">
           <img className="w-8 h-8" src={Logo} alt="App logo" />
           <h3 className="tracking-widest">Decentralize Voting</h3>

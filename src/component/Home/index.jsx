@@ -59,7 +59,6 @@ const Home = () => {
                   <p className="font-md text-sm text-gray-600">{address}</p>
                   <img onClick={() => copyToClipboard(address)} src={Copy} className="w-5 h-5 p-[2px] hover:border hover:border-primary-dark hover:rounded-sm active:border-none" />
                 </div>
-               
               </div>
               <div className="flex flex-col gap-2 px-5 py-10 border rounded-md text-center items-center shadow-md">
                 <h3 className="font-semibold text-xl">Create new vote</h3>
