@@ -17,6 +17,32 @@
   }
 }
 
+@layer components {
+  .inter-heading2 {
+    @apply font-bold text-3xl
+  }
+
+  .inter-body {
+    @apply font-semibold text-2xl
+  }
+
+  .inter-body2 {
+    @apply font-medium text-lg
+  }
+
+  .inter-button {
+    @apply font-medium text-base
+  }
+
+  .inter-caption {
+    @apply font-medium text-sm
+  }
+
+  .inter-small {
+    @apply font-medium text-sm
+  }
+}
+
 body {
   margin: 0;
   width: 100%;
