@@ -9,11 +9,6 @@ import networkConfig from "../../assets/config/network.json";
 import Plus from "../../assets/images/plus.png";
 import useAdminContract from "../../hooks/useAdminContract";
 
-
-import CreateNewVote from "../owner/CreateNewVote";
-import AddVoteOption from "../Admin/AddVoteOption";
-import VoteSubmitted from "../Admin/VoteSubmitted";
-
 const Home = () => {
   const { address, chainId, connectWallet } = useContext(Web3Context);
   const navigate = useNavigate();
@@ -63,7 +58,6 @@ const Home = () => {
                   <span>Create a topic</span>
                 </button>
               </div>
-              <CreateNewVote />
             </div>
           ) : (
             <ConnectWallet connectWallet={connectWallet} />
