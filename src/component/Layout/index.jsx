@@ -3,7 +3,6 @@ import { BiMenuAltLeft } from 'react-icons/bi';
 import { BsFillArrowLeftCircleFill } from 'react-icons/bs';
 import { GoGraph } from "react-icons/go";
 import { MdDashboardCustomize } from "react-icons/md";
-import { FaUserCircle } from "react-icons/fa";
 import { useState } from "react";
 import Logo from "../../assets/images/blockchain.png";
 
@@ -21,7 +20,7 @@ const Layout = ({ children }) => {
       </div>
       { toggleMenu && (
       <div className={"absolute left-0 z-10 rounded-r-md bg-primary-dark md:hidden h-screen flex flex-col gap-10 animate-slide"}>
-        <BsFillArrowLeftCircleFill fontSize={40} className='absolute right-1/2 top-1/2 translate-x-1/2 -translate-y-1/2 text-primary-100 rounded-full bg-slate-50 border border-slate-50 cursor-pointer' onClick={() => setToggleMenu(false)} />
+        <BsFillArrowLeftCircleFill fontSize={45} className='absolute right-1/2 top-1/2 translate-x-1/2 -translate-y-1/2 rotate-180 hover:rotate-0 hover:animate-pulse transition-all text-primary-100 rounded-full bg-slate-50 border border-slate-50 cursor-pointer' onClick={() => setToggleMenu(false)} />
         <div className="flex flex-row min-w-max gap-3 text-white logo mx-5 py-5">
           <img className="w-8 h-8" src={Logo} alt="App logo" />
           <h3 className="tracking-widest">Decentralize Voting</h3>
@@ -56,7 +55,6 @@ const Layout = ({ children }) => {
         </div>
       </div>
       <div className="basis-4/5 p-20 max-md:basis-full main-content">{children}</div>
-      <FaUserCircle fontSize={50} className={"absolute top-5 right-5 h-10 w-10 text-primary-dark"} />
     </div>
   );
 };

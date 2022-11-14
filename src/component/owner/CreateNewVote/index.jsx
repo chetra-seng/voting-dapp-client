@@ -1,20 +1,20 @@
 import React from "react";
+import Button from "../../Button";
 
-const CreateNewVote = () => {
+
+const CreateNewVote = (props) => {
   return (
     <>
-        <div className="flex flex-col gap-9 border rounded-md p-9 w-[440px] h-[310px] shadow-md">
+        <div className={"flex flex-col gap-4 border rounded-md p-9 shadow-md " + (props.disable ? "opacity-50" : null)}>
             <div className="title-wrapper">
                 <div className="text-2xl font-medium">Create New Vote</div>
                 <div className="text-sm font-medium">Weeeeeeee</div>
             </div>
             <div className="relative left-0 font-popin font-medium">
-                <div className="font-medium text-sm">Vote Title</div>
-                <input className="w-full h-[48px] focus:outline-none bg-white px-4 rounded-md shadow-md" type="text"/>
+                <div className="font-medium text-sm mb-1">Vote Title</div>
+                <input disabled={props.disable!=null ? props.disable:false} className="w-full h-[48px] focus:outline-none px-4 rounded-md shadow-md bg-input" type="text"/>
             </div>
-            <div className="flex items-center justify-center w-full h-[48px] rounded-md text-slate-100 bg-[#337ee8] hover:bg-[#337ee8]/90 hover:text-white hover:shadow-md active:scale-[.99] active:bg-[#337ee8]/70 cursor-pointer">
-                Create Now
-            </div>
+            <Button onClick={props.onClick} name="Create Now"/>
         </div>
     </>
     );

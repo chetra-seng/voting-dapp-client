@@ -11,22 +11,10 @@ const SubmitVote = (props) => {
                     {/* Select vote item */}
                     <div className="relative w-full">
                         <input type="radio" id="Figma1" name="option" className="absolute z-10 top-1/2 -translate-y-1/2 right-2"/>
-                        <input type="text" value="Figma1" disabled className="h-8 w-full p-5 focus:outline-none border-none caret-slate-500 rounded-sm text-slate-900 bg-input hover:bg-secondary-20 focus:bg-secondary-20" />
-                    </div>
-                    <div className="relative w-full">
-                        <input type="radio" id="Figma2" name="option" className="absolute z-10 top-1/2 -translate-y-1/2 right-2"/>
-                        <input type="text" value="Figma1" disabled className="h-8 w-full p-5 focus:outline-none border-none caret-slate-500 rounded-sm text-slate-900 bg-input hover:bg-secondary-20 focus:bg-secondary-20" />
-                    </div>
-                    <div className="relative w-full">
-                        <input type="radio" id="Figma3" name="option" className="absolute z-10 top-1/2 -translate-y-1/2 right-2"/>
-                        <input type="text" value="Figma1" disabled className="h-8 w-full p-5 focus:outline-none border-none caret-slate-500 rounded-sm text-slate-900 bg-input hover:bg-secondary-20 focus:bg-secondary-20" />
-                    </div>
-                    <div className="relative w-full">
-                        <input type="radio" id="Figma4" name="option" className="absolute z-10 top-1/2 -translate-y-1/2 right-2"/>
-                        <input type="text" value="Figma1" disabled className="h-8 w-full p-5 focus:outline-none border-none caret-slate-500 rounded-sm text-slate-900 bg-input hover:bg-secondary-20 focus:bg-secondary-20" />
+                        <input disabled type="text" value="Figma1" className="h-8 w-full p-5 focus:outline-none border-none caret-slate-500 rounded-sm text-slate-900 bg-input hover:bg-secondary-20 focus:bg-secondary-20" />
                     </div>
                     
-                    <Button name="Submit Vote"/>
+                    <Button onClick={props.onClick } name="Submit Vote"/>
                 </div>
             </div>
     );

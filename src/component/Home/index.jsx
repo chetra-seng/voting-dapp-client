@@ -1,13 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Web3Context } from "../../contexts/Web3Provider";
+import useWeb3 from "../../hooks/useWeb3";
+import UserAddressAccount from "../UserAddress";
 import ConnectWallet from "../ConnectWallet";
 import Layout from "../Layout";
 import networkConfig from "../../assets/config/network.json";
 import Plus from "../../assets/images/plus.png";
 import useAdminContract from "../../hooks/useAdminContract";
-import useWeb3 from "../../hooks/useWeb3";
-import Copy from "../../assets/images/copy.png";
+
+
+import CreateNewVote from "../owner/CreateNewVote";
+import AddVoteOption from "../Admin/AddVoteOption";
+import VoteSubmitted from "../Admin/VoteSubmitted";
+
 const Home = () => {
   const { address, chainId, connectWallet } = useContext(Web3Context);
   const navigate = useNavigate();
@@ -43,36 +49,25 @@ const Home = () => {
     }
   }
 
-  function copyToClipboard(address) {
-    navigator.clipboard.writeText(address);
-  };
-
   return (
     <Layout>
-      <div className="flex h-full">
-        <div className="m-auto">
+      <div className="flex justify-center items-start h-full md:w-[60%] md:mx-auto min-w-max">
           {address ? (
-            <div className="flex flex-col gap-5">
-              <div className="flex flex-col p-5 border rounded-md text-center shadow-md">
-                <h1 className="font-semibold text-sm">{owner? "You're owner": "You are gay bro"}</h1>
-                <div className="flex flex-row gap-3">
-                  <p className="font-md text-sm text-gray-600">{address}</p>
-                  <img onClick={() => copyToClipboard(address)} src={Copy} className="w-5 h-5 p-[2px] hover:border hover:border-primary-dark hover:rounded-sm active:border-none" />
-                </div>
-              </div>
+            <div className="w-full flex flex-col gap-5">
+              <UserAddressAccount owner={owner} address={address} />
               <div className="flex flex-col gap-2 px-5 py-10 border rounded-md text-center items-center shadow-md">
                 <h3 className="font-semibold text-xl">Create new vote</h3>
                 <p className="font-md text-sm text-slate-800">Add a new vote topic</p>
-                <button className="flex items-center justify-center gap-2 w-full rounded-md text-slate-100 bg-[#337ee8] hover:bg-[#337ee8]/90 hover:text-white hover:shadow-md active:scale-[.99] active:bg-[#337ee8]/70 cursor-pointer p-2">
+                <button className="max-w-[70%] min-w-max flex items-center justify-center gap-2 w-full rounded-md text-slate-100 bg-[#337ee8] hover:bg-[#337ee8]/90 hover:text-white hover:shadow-md active:scale-[.99] active:bg-[#337ee8]/70 cursor-pointer p-2">
                   <img src={Plus} className="w-3 h-3" />
                   <span>Create a topic</span>
                 </button>
               </div>
+              <CreateNewVote />
             </div>
           ) : (
             <ConnectWallet connectWallet={connectWallet} />
           )}
-        </div>
       </div>
     </Layout>
   );
