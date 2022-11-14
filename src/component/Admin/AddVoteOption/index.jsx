@@ -44,7 +44,6 @@ const AddVoteOption = (props) => {
 
       return receipt;
     } catch (err) {
-      console.log("failed to get receipt: ", err);
       toast.error("Failed to get receipt", options);
     }
   };
@@ -67,14 +66,17 @@ const AddVoteOption = (props) => {
       const res = await addOption(topic, optionName, address);
 			console.log("tx: ", res);
       if (res) {
-        const receipt = await getTransactionReceipt(res);
+        const receipt = getTransactionReceipt(res);
         await sleep(200);
         if (receipt) {
           toast.success(
-            <a href={`${networkConfig.blockExplorer}/tx/${res}`}>
-              Add vote success
-            </a>,
-            options
+            "Create vote successful",
+            {
+              ...options,
+              onClick: () => {
+                window.open(`${networkConfig.blockExplorer}/tx/${res}`, "_blank");
+              },
+            }
           );
           return;
         }
