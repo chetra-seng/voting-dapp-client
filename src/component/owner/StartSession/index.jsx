@@ -4,9 +4,9 @@ import Button from '../../Button';
 const StartSession = (props) => {
 
     return (
-        <div className='flex flex-col item-center justify-start gap-9 w-[450px] rounded-md shadow-md p-9'>
+        <div className='flex flex-col item-center justify-start gap-9 rounded-md shadow-md p-9'>
             <SessionTopicIndicator styles="bg-[#D0F1FB] shadow-sm" vote_title={props.vote_title}  name="Not Started"/>
-            <Button name = 'Start The Session'/>
+            <Button onClick={props.onClick} name = 'Start The Session'/>
         </div>
     );
 
