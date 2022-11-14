@@ -34,21 +34,10 @@ const CreateNewVote = ({ setShowModal }) => {
 
       return receipt;
     } catch (err) {
-      console.log("failed to get receipt: ", err);
+      setShowModal(false);
       toast.error("Failed to get receipt", options);
     }
   };
-
-  async function waitUntil(condition) {
-		return await new Promise(resolve => {
-			const interval = setInterval(() => {
-				if (condition) {
-					resolve('Success');
-					clearInterval(interval);
-				};
-			}, 1000);
-		});
-	}
 
   const handleAddTopic = async () => {
     const bytes32 = web3.utils.asciiToHex(text);
@@ -58,11 +47,16 @@ const CreateNewVote = ({ setShowModal }) => {
         const receipt = getTransactionReceipt(res);
         await sleep(200);
         if (receipt) {
+          setShowModal(false);
+          window.location.reload();
           toast.success(
-            <a href={`${networkConfig.blockExplorer}/tx/${res}`}>
-              Add vote success
-            </a>,
-            options
+            "Create vote successful",
+            {
+              ...options,
+              onClick: () => {
+                window.open(`${networkConfig.blockExplorer}/tx/${res}`, "_blank");
+              },
+            }
           );
           return;
         }

@@ -7,18 +7,26 @@ import networkConfig from "../../assets/config/network.json";
 import useAdminContract from "../../hooks/admin/useAdminContract";
 import useWeb3 from "../../hooks/web3/useWeb3";
 import OwnerOption from "./OwnerOption";
-import AddVoteOption from "../Admin/AddVoteOption"
+import AddVoteOption from "../Admin/AddVoteOption";
 import SubmitVote from "../Admin/SubmitVote";
 
 import UserAddressAccount from "../UserAddress";
+import ReloadPageVote from "../Admin/ReloadPage";
+import useVoteContract from "../../hooks/vote/useVoteContract";
 const Home = () => {
   const { address, chainId, connectWallet } = useContext(Web3Context);
   const navigate = useNavigate();
 
+  const VOTE_SESSION = "Voting";
+  const REGISTER_SESSION = "Registration";
+  const INACTIVE_SESSION = "Inactive";
+
+  const [session, setSession] = useState(null);
   const [owner, setOwner] = useState(false);
   const [admin, setAdmin] = useState(false);
 
   const { getOwner, isAdmin } = useAdminContract();
+  const {getCurrentSession} = useVoteContract();
   const web3 = useWeb3();
 
   useEffect(() => {
@@ -27,47 +35,56 @@ const Home = () => {
     }
   }, [chainId, navigate]);
 
-  
-
   useEffect(() => {
-    const checkAdmin = async (address) => {
-      try {
-        const res = await isAdmin(address);
-        console.log("is Admin: ", res);
-        setAdmin(res);
-      }
-      catch(err){
-        console.log(err);
-        setAdmin(false);
-      }
-    }
-    const checkOwner = async (address) => {
-      try {
-        const res = await getOwner(address);
-        if (
-          web3.utils.toChecksumAddress(res) ===
-          web3.utils.toChecksumAddress(address)
-        ) {
-          setOwner(true);
-          return;
-        }
-        setOwner(false);
-        await checkAdmin(address);
-      } catch (err) {
-        console.log(err);
-        setOwner(false);
-      }
-    };
     checkOwner(address);
-
+    checkSession();
     // eslint-disable-next-line
   }, [address]);
 
-  function copyToClipboard(address) {
-    navigator.clipboard.writeText(address);
-  }
+  const checkAdmin = async (address) => {
+    try {
+      const res = await isAdmin(address);
+      console.log("is Admin: ", res);
+      setAdmin(res);
+    } catch (err) {
+      console.log(err);
+      setAdmin(false);
+    }
+  };
+  const checkOwner = async (address) => {
+    try {
+      const res = await getOwner(address);
+      if (
+        web3.utils.toChecksumAddress(res) ===
+        web3.utils.toChecksumAddress(address)
+      ) {
+        setOwner(true);
+        return;
+      }
+      setOwner(false);
+      await checkAdmin(address);
+    } catch (err) {
+      console.log(err);
+      setOwner(false);
+    }
+  };
 
-  {owner? <OwnerOption />: admin? <AddVoteOption />: <SubmitVote />}
+  const checkSession = async () => {
+    try {
+      const res = await getCurrentSession();
+      // getCurrentSession response
+      // {
+      //   0: "index",
+      //   1: "sessionName",
+      //   2: "currentBlock",
+      //   3: "EndBlock"
+      // }
+      setSession(res['1']);
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
 
   return (
     <Layout>
@@ -75,15 +92,24 @@ const Home = () => {
         <div className="m-auto">
           {address ? (
             <div className="flex flex-col gap-5">
-              <UserAddressAccount address={address} admin={admin} owner={owner}/>
-              {owner? <OwnerOption />: admin? <AddVoteOption />: <SubmitVote />}
+              <UserAddressAccount
+                address={address}
+                admin={admin}
+                owner={owner}
+              />
+              {owner ? (
+                session === INACTIVE_SESSION? <OwnerOption />: <ReloadPageVote />
+              ) : admin ? (
+                session === REGISTER_SESSION? <AddVoteOption />: <ReloadPageVote />
+              ) : (
+                <SubmitVote />
+              )}
             </div>
           ) : (
             <ConnectWallet connectWallet={connectWallet} />
           )}
         </div>
       </div>
-      
     </Layout>
   );
 };

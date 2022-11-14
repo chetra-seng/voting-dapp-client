@@ -87,6 +87,7 @@ const useVoteContract = () => {
     addVote,
     getAllVotes,
     getVoteCounts,
+    getCurrentSession
   };
 };
 
