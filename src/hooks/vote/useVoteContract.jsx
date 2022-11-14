@@ -67,6 +67,10 @@ const useVoteContract = () => {
     return res;
   }
 
+  const getCurrentSession = async () => {
+    return await contract.methods.getCurrentSesson().call();
+  }
+
   return { addTopic, getLatestTopic, addOption, getVoteOptions, addVote };
 };
 
