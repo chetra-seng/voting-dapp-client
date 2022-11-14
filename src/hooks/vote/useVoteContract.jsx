@@ -30,7 +30,7 @@ const useVoteContract = () => {
 
   const getVoteOptions = async (topicName) => {
     return await contract.methods.getVoteOptions(topicName).call();
-  }
+  };
 
   const addOption = async (topicName, optionName, address) => {
     const method = await contract.methods.addOption(topicName, optionName);
@@ -51,7 +51,7 @@ const useVoteContract = () => {
 
   const addVote = async (topicName, optionName, address) => {
     const method = await contract.methods.addVote(topicName, optionName);
-    const estGas = await method.estimateGas({from: address});
+    const estGas = await method.estimateGas({ from: address });
 
     const res = await window.ethereum.request({
       method: "eth_sendTransaction",
@@ -65,9 +65,29 @@ const useVoteContract = () => {
       ],
     });
     return res;
-  }
+  };
 
-  return { addTopic, getLatestTopic, addOption, getVoteOptions, addVote };
+  const getCurrentSession = async () => {
+    return await contract.methods.getCurrentSesson().call();
+  };
+
+  const getAllVotes = async () => {
+    return await contract.methods.getTopics().call();
+  };
+
+  const getVoteCounts = async () => {
+    return await contract.methods.getVoteCounts().call();
+  };
+
+  return {
+    addTopic,
+    getLatestTopic,
+    addOption,
+    getVoteOptions,
+    addVote,
+    getAllVotes,
+    getVoteCounts,
+  };
 };
 
 export default useVoteContract;
