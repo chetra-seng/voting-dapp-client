@@ -15,11 +15,11 @@ const useAdminContract = () => {
     return await adminContract.addAdmin(address, 1);
   }
 
-  const isExisted = async (address) => {
-    return await adminContract.isExisted(address);
+  const isAdmin = async (address) => {
+    return await adminContract.methods.isExisted(address).call();
   }
 
-  return {getOwner, addAdmin, isExisted}
+  return {getOwner, addAdmin, isAdmin}
 }
 
 export default useAdminContract;

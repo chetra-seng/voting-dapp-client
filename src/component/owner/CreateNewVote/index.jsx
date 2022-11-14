@@ -26,8 +26,8 @@ const CreateNewVote = ({ setShowModal }) => {
 
   const getTransactionReceipt = async (txHash) => {
     try {
+      await sleep(1000);
       const receipt = await web3.eth.getTransactionReceipt(txHash);
-      sleep(200);
       if (!receipt) {
         await getTransactionReceipt(txHash);
       }
@@ -39,13 +39,24 @@ const CreateNewVote = ({ setShowModal }) => {
     }
   };
 
+  async function waitUntil(condition) {
+		return await new Promise(resolve => {
+			const interval = setInterval(() => {
+				if (condition) {
+					resolve('Success');
+					clearInterval(interval);
+				};
+			}, 1000);
+		});
+	}
+
   const handleAddTopic = async () => {
     const bytes32 = web3.utils.asciiToHex(text);
     try {
       const res = await addTopic(bytes32.padEnd(66, "0"));
       if (res) {
-        const receipt = await getTransactionReceipt(res);
-        console.log(receipt);
+        const receipt = getTransactionReceipt(res);
+        await sleep(200);
         if (receipt) {
           toast.success(
             <a href={`${networkConfig.blockExplorer}/tx/${res}`}>
