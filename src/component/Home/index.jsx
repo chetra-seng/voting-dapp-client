@@ -4,17 +4,20 @@ import { Web3Context } from "../../contexts/Web3Provider";
 import ConnectWallet from "../ConnectWallet";
 import Layout from "../Layout";
 import networkConfig from "../../assets/config/network.json";
-import Plus from "../../assets/images/plus.png";
-import useAdminContract from "../../hooks/useAdminContract";
-import useWeb3 from "../../hooks/useWeb3";
-
+import useAdminContract from "../../hooks/admin/useAdminContract";
+import useWeb3 from "../../hooks/web3/useWeb3";
+import Copy from "../../assets/images/copy.png";
+import OwnerOption from "./OwnerOption";
+import AddVoteOption from "../Admin/AddVoteOption"
+import SubmitVote from "../Admin/SubmitVote";
 const Home = () => {
   const { address, chainId, connectWallet } = useContext(Web3Context);
   const navigate = useNavigate();
 
   const [owner, setOwner] = useState(false);
-  const {getOwner} = useAdminContract();
-  
+  const [admin, setAdmin] = useState(false);
+
+  const { getOwner, isAdmin } = useAdminContract();
   const web3 = useWeb3();
 
   useEffect(() => {
@@ -23,50 +26,76 @@ const Home = () => {
     }
   }, [chainId, navigate]);
 
-  useEffect(() => {
-    checkOwner(address);
-  })
+  
 
-  const checkOwner = async (address) => {
-    try {
-      const res = await getOwner(address);
-      if(web3.utils.toChecksumAddress(res) === web3.utils.toChecksumAddress(address)){
-        console.log(web3.utils.toChecksumAddress(res) === web3.utils.toChecksumAddress(address));
-        setOwner(true);
-        return;
+  useEffect(() => {
+    const checkAdmin = async (address) => {
+      try {
+        const res = await isAdmin(address);
+        console.log("is Admin: ", res);
+        setAdmin(res);
       }
-      setOwner(false);
+      catch(err){
+        console.log(err);
+        setAdmin(false);
+      }
     }
-    catch(err){
-      console.log(err);
-      setOwner(false);
-    }
+    const checkOwner = async (address) => {
+      try {
+        const res = await getOwner(address);
+        if (
+          web3.utils.toChecksumAddress(res) ===
+          web3.utils.toChecksumAddress(address)
+        ) {
+          setOwner(true);
+          return;
+        }
+        setOwner(false);
+        await checkAdmin(address);
+      } catch (err) {
+        console.log(err);
+        setOwner(false);
+      }
+    };
+    checkOwner(address);
+
+    // eslint-disable-next-line
+  }, [address]);
+
+  function copyToClipboard(address) {
+    navigator.clipboard.writeText(address);
   }
 
   return (
     <Layout>
       <div className="flex h-full">
+      
         <div className="m-auto">
           {address ? (
             <div className="flex flex-col gap-5">
-              <div className="flex flex-col p-5 border rounded-md text-center">
-                {owner? "You're owner": "You are gay bro"}
-                <p>{address}</p>
+              <div className="flex flex-col p-5 border rounded-md text-center shadow-md">
+                <h1 className="font-semibold text-sm">
+                  {owner ? "You're owner" : admin? "You're admin": "You're user"}
+                </h1>
+                <div className="flex flex-row gap-3">
+                  <p className="font-md text-sm text-gray-600">{address}</p>
+                  <img
+                    alt="copy"
+                    onClick={() => copyToClipboard(address)}
+                    src={Copy}
+                    className="w-5 h-5 p-[2px] hover:border hover:border-primary-dark hover:rounded-sm active:border-none"
+                  />
+                </div>
               </div>
-              <div className="flex flex-col px-5 py-10 border rounded-md text-center items-center">
-                <h3>Create new vote</h3>
-                <p>Add a new vote topic</p>
-                <button className="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 mr-2 mb-2 gap-3">
-                  <img src={Plus} alt="Test" className="w-5 h-5" />
-                  Create a topic
-                </button>
-              </div>
+              {owner? <OwnerOption />: admin? <AddVoteOption />: <SubmitVote />}
             </div>
           ) : (
             <ConnectWallet connectWallet={connectWallet} />
           )}
         </div>
+        
       </div>
+      
     </Layout>
   );
 };

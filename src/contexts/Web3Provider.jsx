@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useMemo, useState } from "react";
 import { toast } from "react-toastify";
-import useWeb3 from "../hooks/useWeb3";
+import useWeb3 from "../hooks/web3/useWeb3";
 import networkConfig from "../assets/config/network.json";
 
 export const Web3Context = createContext();
