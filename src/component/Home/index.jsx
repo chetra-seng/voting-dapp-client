@@ -6,10 +6,11 @@ import Layout from "../Layout";
 import networkConfig from "../../assets/config/network.json";
 import useAdminContract from "../../hooks/admin/useAdminContract";
 import useWeb3 from "../../hooks/web3/useWeb3";
-import Copy from "../../assets/images/copy.png";
 import OwnerOption from "./OwnerOption";
 import AddVoteOption from "../Admin/AddVoteOption"
 import SubmitVote from "../Admin/SubmitVote";
+
+import UserAddressAccount from "../UserAddress";
 const Home = () => {
   const { address, chainId, connectWallet } = useContext(Web3Context);
   const navigate = useNavigate();
@@ -66,34 +67,21 @@ const Home = () => {
     navigator.clipboard.writeText(address);
   }
 
+  {owner? <OwnerOption />: admin? <AddVoteOption />: <SubmitVote />}
+
   return (
     <Layout>
       <div className="flex h-full">
-      
         <div className="m-auto">
           {address ? (
             <div className="flex flex-col gap-5">
-              <div className="flex flex-col p-5 border rounded-md text-center shadow-md">
-                <h1 className="font-semibold text-sm">
-                  {owner ? "You're owner" : admin? "You're admin": "You're user"}
-                </h1>
-                <div className="flex flex-row gap-3">
-                  <p className="font-md text-sm text-gray-600">{address}</p>
-                  <img
-                    alt="copy"
-                    onClick={() => copyToClipboard(address)}
-                    src={Copy}
-                    className="w-5 h-5 p-[2px] hover:border hover:border-primary-dark hover:rounded-sm active:border-none"
-                  />
-                </div>
-              </div>
+              <UserAddressAccount address={address} admin={admin} owner={owner}/>
               {owner? <OwnerOption />: admin? <AddVoteOption />: <SubmitVote />}
             </div>
           ) : (
             <ConnectWallet connectWallet={connectWallet} />
           )}
         </div>
-        
       </div>
       
     </Layout>
