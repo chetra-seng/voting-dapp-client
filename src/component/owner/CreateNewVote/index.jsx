@@ -34,7 +34,7 @@ const CreateNewVote = ({ setShowModal }) => {
 
       return receipt;
     } catch (err) {
-      setShowModal(false);
+      console.log(err);
       toast.error("Failed to get receipt", options);
     }
   };
@@ -48,7 +48,6 @@ const CreateNewVote = ({ setShowModal }) => {
         await sleep(200);
         if (receipt) {
           setShowModal(false);
-          window.location.reload();
           toast.success(
             "Create vote successful",
             {
