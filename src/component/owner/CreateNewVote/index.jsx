@@ -5,7 +5,7 @@ import useVoteContract from "../../../hooks/vote/useVoteContract";
 import useWeb3 from "../../../hooks/web3/useWeb3";
 import networkConfig from "../../../assets/config/network.json";
 
-const CreateNewVote = ({ setShowModal }) => {
+const CreateNewVote = ({ setShowModal, checkSession }) => {
   const [text, setText] = useState(null);
   const web3 = useWeb3();
   const { addTopic } = useVoteContract();
@@ -47,6 +47,7 @@ const CreateNewVote = ({ setShowModal }) => {
         const receipt = getTransactionReceipt(res);
         await sleep(200);
         if (receipt) {
+          await checkSession();
           setShowModal(false);
           toast.success(
             "Create vote successful",

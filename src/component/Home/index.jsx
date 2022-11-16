@@ -13,6 +13,7 @@ import SubmitVote from "../Admin/SubmitVote";
 import UserAddressAccount from "../UserAddress";
 import ReloadPageVote from "../Admin/ReloadPage";
 import useVoteContract from "../../hooks/vote/useVoteContract";
+import EndVoteSession from "../Voter/EndVoteSession";
 const Home = () => {
   const { address, chainId, connectWallet } = useContext(Web3Context);
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const Home = () => {
   const [admin, setAdmin] = useState(false);
 
   const { getOwner, isAdmin } = useAdminContract();
-  const {getCurrentSession} = useVoteContract();
+  const { getCurrentSession } = useVoteContract();
   const web3 = useWeb3();
 
   useEffect(() => {
@@ -79,12 +80,13 @@ const Home = () => {
       //   2: "currentBlock",
       //   3: "EndBlock"
       // }
-      setSession(res['1']);
-    }
-    catch(err){
+      setSession(res["1"]);
+    } catch (err) {
       console.log(err);
     }
-  }
+  };
+
+  console.log(owner);
 
   return (
     <Layout>
@@ -97,12 +99,65 @@ const Home = () => {
                 admin={admin}
                 owner={owner}
               />
-              {owner ? (
-                session === INACTIVE_SESSION? <OwnerOption />: <ReloadPageVote />
-              ) : admin ? (
-                session === REGISTER_SESSION? <AddVoteOption />: <ReloadPageVote />
+              {owner ? ( // check if address is owner
+                <>
+                  <OwnerOption checkSession={checkSession} />
+                  {/*
+                    if session is not inactive, show modal
+                    TODO: Change modal to reside in the container
+                   */}
+                  {session !== INACTIVE_SESSION && (
+                    <>
+                      <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                        <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                          {/*content*/}
+                          <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                            <ReloadPageVote />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                    </>
+                  )}
+                </>
+              ) : admin ? ( // if address is not owner, check if it's admin
+                <>
+                  <AddVoteOption />
+                  {/* If session is not register session, 
+                    show reload page modal 
+                    // TODO: change modal to reside in container  
+                  */}
+                  {session !== REGISTER_SESSION && (
+                    <>
+                      <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                        <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                          {/*content*/}
+                          <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                            <ReloadPageVote />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                    </>
+                  )}
+                </>
               ) : (
-                <SubmitVote />
+                <>
+                  <SubmitVote />
+                  {session !== VOTE_SESSION && (
+                    <>
+                      <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                        <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                          {/*content*/}
+                          <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                            <EndVoteSession />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                    </>
+                  )}
+                </>
               )}
             </div>
           ) : (

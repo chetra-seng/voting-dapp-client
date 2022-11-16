@@ -126,32 +126,41 @@ const SubmitVote = () => {
 				</form> */}
         <div className="pb-5 justify-center flex">
           <div className="bg-white rounded-md -space-y-px">
-            {topic && options? options.map(opt => <div key={opt} className="relative border rounded-tl-md rounded-tr-md p-4 flex flex-row-reverse justify-between">
-              <div className="flex items-center h-5" >
-                <input
-                  id={opt}
-                  x-ref="radio"
-                  value={opt}
-                  x-model="value"
-                  name="privacy_setting"
-                  type="radio"
-                  className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 cursor-pointer border-gray-300"
-                  checked={value === opt}
-                  onChange={(e)=> setValue(e.target.value)}
-                />
-              </div>
-              <label
-                htmlFor={opt}
-                className="ml-3 flex flex-col cursor-pointer mr-20"
-              >
-                <span className="block text-sm font-medium">{web3.utils.hexToAscii(opt)}</span>
-              </label>
-            </div>): null}
-            
+            {topic && options
+              ? options.map((opt) => (
+                  <div
+                    key={opt}
+                    className="relative border rounded-tl-md rounded-tr-md p-4 flex flex-row-reverse justify-between"
+                  >
+                    <div className="flex items-center h-5">
+                      <input
+                        id={opt}
+                        x-ref="radio"
+                        value={opt}
+                        x-model="value"
+                        name="privacy_setting"
+                        type="radio"
+                        className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 cursor-pointer border-gray-300"
+                        checked={value === opt}
+                        onChange={(e) => setValue(e.target.value)}
+                      />
+                    </div>
+                    <label
+                      htmlFor={opt}
+                      className="ml-3 flex flex-col cursor-pointer mr-20"
+                    >
+                      <span className="block text-sm font-medium">
+                        {web3.utils.hexToAscii(opt)}
+                      </span>
+                    </label>
+                  </div>
+                ))
+              : null}
           </div>
         </div>
-        <button className="primary-btn" onClick={handleAddVote}>Submit Vote</button>
-
+        <button className="primary-btn" onClick={handleAddVote}>
+          Submit Vote
+        </button>
       </div>
     </div>
   );
