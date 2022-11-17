@@ -92,11 +92,11 @@ const AddVoteOption = (props) => {
   };
 
   return (
-    <div className="min-w-fit max-w-[50vw] flex flex-col gap-5 justify-center items-start rounded-md border-gray-300 shadow-md px-6 py-8">
-      <h1 className="min-w-max font-medium text-[1.75rem] tracking-wider text-slate-900">
+    <div className="box-container">
+      <h1 className="inter-caption lg:inter-body2 md:inter-body2">
         Add Vote Option
       </h1>
-      <div className="flex flex-col gap-5 justify-center items-start rounded-md border border-gray-300 p-5">
+      <div className="box-container">
         <SessionTopicIndicator
           name="In Registration"
           styles="bg-[#4CCAF0]"

@@ -90,7 +90,7 @@ const Dashboard = () => {
 
   return (
     <Layout>
-      <div className="flex justify-center mx-auto">
+      <div className="flex justify-center mx-auto relative w-full max-w-lg h-full md:h-auto">
           {address ? (
             <div className="flex flex-col gap-5">
               <UserAddressAccount
@@ -125,7 +125,7 @@ const Dashboard = () => {
                     show reload page modal 
                     // TODO: change modal to reside in container  
                   */}
-                  {session !== REGISTER_SESSION && (
+                  {session === REGISTER_SESSION && (
                     <>
                       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                         <div className="relative w-auto my-6 mx-auto max-w-3xl">
@@ -141,7 +141,7 @@ const Dashboard = () => {
               ) : (
                 <>
                   <SubmitVote />
-                  {session !== VOTE_SESSION && (
+                  {session === VOTE_SESSION && (
                     <>
                       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                       <EndVoteSession styles="bg-slate-200" />

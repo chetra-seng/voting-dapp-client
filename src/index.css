@@ -49,6 +49,14 @@
   .primary-btn {
     @apply flex items-center justify-center gap-2 w-full rounded-md text-slate-100 bg-[#337ee8] hover:bg-[#337ee8]/90 hover:text-white hover:shadow-md active:scale-[.99] active:bg-[#337ee8]/70 cursor-pointer p-2
   }
+
+  .box-container {
+    @apply min-w-[35vw] max-w-[50vw] flex flex-col gap-2 justify-center items-start rounded-md border border-gray-300 p-8
+  }
+
+  .address-container {
+    @apply relative min-w-[35vw] max-w-[50vw] flex flex-col gap-2 p-5 border rounded-md text-center shadow-md undefined
+  }
 }
 
 body {

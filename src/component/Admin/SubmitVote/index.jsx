@@ -94,7 +94,7 @@ const SubmitVote = () => {
   }, []);
 
   return (
-    <div className="min-w-[35vw] max-w-[50vw] flex flex-col gap-5 justify-center items-start rounded-md border border-gray-300 p-8">
+    <div className="box-container">
       <SessionTopicIndicator
         name="Vote Session"
         styles="bg-[#4CCAF0]"

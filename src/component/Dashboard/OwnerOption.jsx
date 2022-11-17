@@ -6,7 +6,7 @@ const OwnerOption = ({checkSession}) => {
   const [showModal, setShowModal] = useState(false);
   return (
     <>
-      <div className="flex flex-col gap-2 px-5 py-10 border rounded-md text-center items-center shadow-md">
+      <div className="box-container text-center items-center">
         <h3 className="font-semibold text-xl">Create new vote</h3>
         <p className="font-md text-sm text-slate-800">Add a new vote topic</p>
         <button onClick={() => {setShowModal(true)}} className="max-w-[70%] min-w-max flex items-center justify-center gap-2 w-full rounded-md text-slate-100 bg-[#337ee8] hover:bg-[#337ee8]/90 hover:text-white hover:shadow-md active:scale-[.99] active:bg-[#337ee8]/70 cursor-pointer p-2">
