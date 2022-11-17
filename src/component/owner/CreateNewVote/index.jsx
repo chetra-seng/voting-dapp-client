@@ -40,7 +40,7 @@ const CreateNewVote = ({ setShowModal, checkSession }) => {
   };
 
   const handleAddTopic = async () => {
-    const bytes32 = web3.utils.asciiToHex(text);
+    const bytes32 = web3.utils.stringToHex(text);
     try {
       const res = await addTopic(bytes32.padEnd(66, "0"));
       if (res) {

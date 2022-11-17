@@ -98,7 +98,7 @@ const SubmitVote = () => {
       <SessionTopicIndicator
         name="Vote Session"
         styles="bg-[#4CCAF0]"
-        vote_title={topic ? web3.utils.hexToAscii(topic) : "Loading ..."}
+        vote_title={topic ? web3.utils.hexToString(topic) : "Loading ..."}
       />
       <div className="w-full flex flex-col grow gap-2">
         {/* Select vote item */}
@@ -150,7 +150,7 @@ const SubmitVote = () => {
                       className="ml-3 flex flex-col cursor-pointer mr-20"
                     >
                       <span className="block text-sm font-medium">
-                        {web3.utils.hexToAscii(opt)}
+                        {web3.utils.hexToString(opt)}
                       </span>
                     </label>
                   </div>

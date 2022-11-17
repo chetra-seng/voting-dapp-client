@@ -62,7 +62,7 @@ const AddVoteOption = (props) => {
 
   const handleAddOption = async () => {
     try {
-      const optionName = web3.utils.asciiToHex(option).padEnd(66, "0");
+      const optionName = web3.utils.stringToHex(option).padEnd(66, "0");
       const res = await addOption(topic, optionName, address);
 			console.log("tx: ", res);
       if (res) {
@@ -97,7 +97,7 @@ const AddVoteOption = (props) => {
         Add Vote Option
       </h1>
       <p className="font-medium text-sm text-gray-700">
-        {!topic ? "Loading topic..." : web3.utils.hexToAscii(topic)}
+        {!topic ? "Loading topic..." : web3.utils.hexToString(topic)}
       </p>
       <div className="w-full flex flex-col gap-5 justify-center items-start rounded-md border border-gray-300 p-8">
         <SessionTopicIndicator
