@@ -7,7 +7,7 @@ const copyToClipboard = (address) => {
 
 const UserAddressAccount = (props) => {
     return (
-        <div className="relative flex flex-col gap-3 p-5 border rounded-md text-center shadow-md">
+        <div className={"relative flex flex-col gap-3 p-5 border rounded-md text-center shadow-md " + props.styles}>
        <FaUserCircle fontSize={30} className={"self-center text-primary-dark"} />
           <h1 className="font-semibold text-sm">
           {props.owner ? "You're owner" : props.admin? "You're admin": "You're user"}

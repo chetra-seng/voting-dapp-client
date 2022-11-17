@@ -21,13 +21,13 @@ const Layout = ({ children }) => {
       </div>
       {toggleMenu && (
         <div className={
-          "absolute left-0 z-10 rounded-r-md bg-primary-dark md:hidden h-screen flex flex-col gap-10 animate-slide"
+          "w-[35vw] min-w-max absolute left-0 z-10 rounded-r-md bg-primary-dark md:hidden h-screen flex flex-col gap-10 animate-slide"
           }>
           <BsFillArrowLeftCircleFill fontSize={45} className='absolute right-1/2 top-1/2 translate-x-1/2 -translate-y-1/2 rotate-180 hover:rotate-0 hover:animate-pulse transition-all text-primary-100 rounded-full bg-slate-50 border border-slate-50 cursor-pointer' onClick={() => setToggleMenu(false)} />
           <AppLogo />
           <nav className="flex flex-col gap-3 text-white grow sidebar-item">
             <NavLink
-              to="/"
+              to="/dashboard"
               end
               className={({ isActive }) =>
                 `no-underline text-white ${isActive ? "bg-primary-100" : ""}`
@@ -55,13 +55,13 @@ const Layout = ({ children }) => {
 
       <div
         className={
-          "basis-1/5 h-screen max-md:hidden flex flex-col gap-10 bg-black "
+          "basis-[25vw] h-screen max-md:hidden flex flex-col gap-10 bg-black "
         }
       >
         <AppLogo />
         <nav className="flex flex-col gap-3 text-white grow sidebar-item">
           <NavLink
-            to={"/"} end
+            to={"/dashboard"} end
             className={({ isActive }) =>
               `no-underline text-white ${isActive ? "bg-primary-100" : null}`
             }
@@ -84,7 +84,7 @@ const Layout = ({ children }) => {
           </NavLink>
         </nav>
       </div>
-      <div className="basis-4/5 p-20 max-md:basis-full main-content">
+      <div className="basis-[75vw] p-20 max-md:basis-full">
         {children}
       </div>
     </div>
