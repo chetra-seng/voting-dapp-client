@@ -92,18 +92,15 @@ const AddVoteOption = (props) => {
   };
 
   return (
-    <div className="w-[450px] flex flex-col gap-5 justify-center items-start rounded-md border-gray-300 shadow-md p-8">
-      <h1 className="font-medium text-[1.75rem] text-slate-900">
+    <div className="min-w-fit max-w-[50vw] flex flex-col gap-5 justify-center items-start rounded-md border-gray-300 shadow-md px-6 py-8">
+      <h1 className="min-w-max font-medium text-[1.75rem] tracking-wider text-slate-900">
         Add Vote Option
       </h1>
-      <p className="font-medium text-sm text-gray-700">
-        {!topic ? "Loading topic..." : web3.utils.hexToString(topic)}
-      </p>
-      <div className="w-full flex flex-col gap-5 justify-center items-start rounded-md border border-gray-300 p-8">
+      <div className="flex flex-col gap-5 justify-center items-start rounded-md border border-gray-300 p-5">
         <SessionTopicIndicator
           name="In Registration"
           styles="bg-[#4CCAF0]"
-          vote_title={props.vote_title}
+          vote_title={!topic ? "Loading topic..." : web3.utils.hexToString(topic)}
         />
         <div className="w-full flex flex-col grow gap-2">
           <p className="text-sm font-md text-gray-800">Vote Options</p>
@@ -111,7 +108,7 @@ const AddVoteOption = (props) => {
 
           <input
             type="text"
-            className="h-8 w-full p-5 focus:outline-none border-none caret-slate-500 rounded-sm text-slate-900 bg-input hover:bg-secondary-20 focus:bg-secondary-20"
+            className="h-8 w-full p-5 focus:outline-none border-none caret-slate-500 rounded-md text-slate-900 bg-input hover:shadow-inner focus:outline-[1px] focus:outline-gray-300"
             onChange={(e) => {
               setOption(e.target.value);
             }}

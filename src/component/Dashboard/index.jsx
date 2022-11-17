@@ -90,8 +90,7 @@ const Dashboard = () => {
 
   return (
     <Layout>
-      <div className="flex h-full">
-        <div className="m-auto">
+      <div className="flex justify-center mx-auto">
           {address ? (
             <div className="flex flex-col gap-5">
               <UserAddressAccount
@@ -111,12 +110,11 @@ const Dashboard = () => {
                       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                         <div className="relative w-auto my-6 mx-auto max-w-3xl">
                           {/*content*/}
-                          <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                            <ReloadPageVote />
-                          </div>
+                          <ReloadPageVote styles="bg-slate-200"/>
                         </div>
                       </div>
-                      <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                      <div className="w-screen h-screen opacity-40 fixed inset-0 z-40 bg-black"></div>
+                      <div className="w-screen h-screen fixed inset-0 z-40 backdrop-blur-sm"></div>
                     </>
                   )}
                 </>
@@ -132,12 +130,11 @@ const Dashboard = () => {
                       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                         <div className="relative w-auto my-6 mx-auto max-w-3xl">
                           {/*content*/}
-                          <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                            <ReloadPageVote />
-                          </div>
+                          <ReloadPageVote styles="bg-slate-200" />
                         </div>
                       </div>
-                      <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                      <div className="w-screen h-screen opacity-40 fixed inset-0 z-40 bg-black"></div>
+                      <div className="w-screen h-screen fixed inset-0 z-40 backdrop-blur-sm"></div>
                     </>
                   )}
                 </>
@@ -147,14 +144,10 @@ const Dashboard = () => {
                   {session !== VOTE_SESSION && (
                     <>
                       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                        <div className="relative w-auto my-6 mx-auto max-w-3xl">
-                          {/*content*/}
-                          <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                            <EndVoteSession />
-                          </div>
-                        </div>
+                      <EndVoteSession styles="bg-slate-200" />
                       </div>
-                      <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+                      <div className="w-screen h-screen opacity-40 fixed inset-0 z-40 bg-black"></div>
+                      <div className="w-screen h-screen fixed inset-0 z-40 backdrop-blur-sm"></div>
                     </>
                   )}
                 </>
@@ -163,7 +156,6 @@ const Dashboard = () => {
           ) : (
             <ConnectWallet connectWallet={connectWallet} />
           )}
-        </div>
       </div>
     </Layout>
   );

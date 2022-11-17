@@ -1,12 +1,16 @@
 import React from "react";
-import Logo from "../../assets/images/logo.png";
+import Logo from "../../assets/images/logo.svg";
 
 const AppLogo = () => {
-    return (<div className="flex flex-row min-w-max gap-3 text-white logo mx-5 py-5">
-    <img className="w-8 h-8" src={Logo} alt="App logo" />
-    <h3 className="tracking-widest">Decentralize Vote</h3>
-</div>
-);
+  return (
+    <div className="w-full flex flex-row justify-start items-center min-w-max gap-2 text-white logo p-3">
+      <img className="w-9 h-9" src={Logo} alt="App logo" />
+      <div className="flex flex-col gap-1 relative">
+        <p className="text-sm font-semibold leading-none">Decentralize</p>
+        <p className="text-lg font-semibold -tracking-tighter leading-none">Voting</p> 
+      </div>
+    </div>
+  );
 };
 
 export default AppLogo;
