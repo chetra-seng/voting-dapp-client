@@ -108,7 +108,7 @@ const Dashboard = () => {
                   {session !== INACTIVE_SESSION && (
                     <>
                       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                        <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                        <div className="relative my-6 mx-auto">
                           {/*content*/}
                           <ReloadPageVote styles="bg-slate-200"/>
                         </div>
@@ -125,10 +125,10 @@ const Dashboard = () => {
                     show reload page modal 
                     // TODO: change modal to reside in container  
                   */}
-                  {session === REGISTER_SESSION && (
+                  {session !== REGISTER_SESSION && (
                     <>
                       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                        <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                        <div className="relative my-6 mx-auto">
                           {/*content*/}
                           <ReloadPageVote styles="bg-slate-200" />
                         </div>
@@ -141,10 +141,10 @@ const Dashboard = () => {
               ) : (
                 <>
                   <SubmitVote />
-                  {session === VOTE_SESSION && (
+                  {session !== VOTE_SESSION && (
                     <>
                       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                      <EndVoteSession styles="bg-slate-200" />
+                      <EndVoteSession/>
                       </div>
                       <div className="w-screen h-screen opacity-40 fixed inset-0 z-40 bg-black"></div>
                       <div className="w-screen h-screen fixed inset-0 z-40 backdrop-blur-sm"></div>
