@@ -99,7 +99,7 @@ const Dashboard = () => {
             odit atque quia expedita dolores?
           </p>
         </div>
-        <div className="flex justify-center mx-auto relative w-full max-w-lg h-full md:h-auto">
+        <div className="flex justify-center mx-auto relative w-full max-w-lg h-full min-w-[60%] ">
           {address ? (
             <div className="flex flex-col gap-5">
               <Address address={address} admin={admin} owner={owner} />
@@ -148,11 +148,11 @@ const Dashboard = () => {
                   <User />
                   {session !== VOTE_SESSION && (
                     <>
-                      <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                      <div className="p-5 justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                         <EndVoteSession />
                       </div>
-                      <div className="w-screen h-screen opacity-40 fixed inset-0 z-40 bg-black"></div>
-                      <div className="w-screen h-screen fixed inset-0 z-40 backdrop-blur-sm"></div>
+                      <div className="w-full h-full opacity-40 fixed inset-0 z-40 bg-black"></div>
+                      <div className="w-full h-full fixed inset-0 z-40 backdrop-blur-sm"></div>
                     </>
                   )}
                 </>

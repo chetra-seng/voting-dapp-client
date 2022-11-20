@@ -13,7 +13,7 @@ const Layout = ({ children }) => {
         }
       >
         <AppLogo />
-        <nav className="flex flex-col gap-3 text-white grow sidebar-item">
+        <nav className="min-w-max flex flex-col gap-3 text-white grow sidebar-item">
           <NavLink
             to={"/"}
             end
@@ -62,7 +62,7 @@ const Layout = ({ children }) => {
           </NavLink>
         </nav>
       </div>
-      <div className="basis-[85vw] max-md:p-8 p-16 max-md:basis-full overflow-y-auto">
+      <div className="basis-[85vw] p-8 overflow-y-auto">
         <PageAnimation>{children}</PageAnimation>
       </div>
     </div>

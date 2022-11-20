@@ -11,6 +11,12 @@ const Votes = () => {
 
   const { getAllVotes, getVoters } = useVoteContract();
 
+const topicShorthen = (topic) => {
+  if (topic.length > 20)
+    return topic.slice(0, 20) + '...'
+    return topic
+}
+
 
   const getAllTopics = async () => {
     try {
@@ -55,14 +61,14 @@ const Votes = () => {
             aspernatur eum illum.
           </p>
         </div>
-        <div className="grid grid-cols-4 gap-5 max-h-full max-lg:grid-cols-2 max-md:grid-cols-1 ">
+        <div className="grid gap-4 1840px:grid-cols-5 1500px:grid-cols-4 max-1500px:grid-cols-3 max-900px:grid-cols-2 max-670px:grid-cols-1 ">
           {results.map((result, index) => (
             <div
-              className="container w-60 flex flex-col gap-3 border rounded-md p-5"
+              className="container flex flex-col gap-3 border rounded-md p-5 shadow-md"
               key={index}
             >
               <p>{`#${index + 1}`}</p>
-              <h5>{web3.utils.hexToString(result.topic)}</h5>
+              <h5 className="overflow-hidden">{topicShorthen(web3.utils.hexToString(result.topic))}</h5>
               <p>{`${result.count} votes`}</p>
               <button className="primary-btn" onClick={() => {
                 navigate(`/votes/${result.topic}`)
