@@ -55,7 +55,7 @@
   }
 
   .box-container {
-    @apply min-w-[35vw] max-w-[40vw] flex flex-col gap-2 justify-center items-start rounded-md border border-gray-300 p-8
+    @apply min-w-[40vw] flex flex-col gap-2 justify-center items-start rounded-md border border-gray-300 p-8
   }
 
   .address-container {

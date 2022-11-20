@@ -10,7 +10,7 @@ const UserAddressAccount = (props) => {
   return (
     <div
       className={
-        "relative flex flex-col gap-2 p-5 border rounded-md text-center shadow-md " +
+        "box-container text-center justify-center items-center " +
         props.styles
       }
     >
