@@ -55,7 +55,7 @@ const Votes = () => {
             aspernatur eum illum.
           </p>
         </div>
-        <div className="grid grid-cols-4 gap-5 max-h-full">
+        <div className="grid grid-cols-4 gap-5 max-h-full max-lg:grid-cols-2 max-md:grid-cols-1 ">
           {results.map((result, index) => (
             <div
               className="container w-60 flex flex-col gap-3 border rounded-md p-5"
