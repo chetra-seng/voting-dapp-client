@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import '~@fontsource/inter/index.css';
 
 @layer base {
   h1 {
@@ -14,6 +15,9 @@
   }
   a {
     @apply text-blue-600 underline;
+  }
+  @font-face {
+    font-family: "Inter";
   }
 }
 

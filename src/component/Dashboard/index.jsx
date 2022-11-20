@@ -45,7 +45,6 @@ const Dashboard = () => {
   const checkAdmin = async (address) => {
     try {
       const res = await isAdmin(address);
-      console.log("is Admin: ", res);
       setAdmin(res);
     } catch (err) {
       console.log(err);
@@ -90,14 +89,20 @@ const Dashboard = () => {
 
   return (
     <Layout>
-      <div className="flex justify-center mx-auto relative w-full max-w-lg h-full md:h-auto">
+      <div className="container flex flex-col gap-10">
+        <div className="flex flex-col gap-5">
+          <h2 className="inter-heading2">Dashboard</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Repellendus, numquam consectetur aspernatur voluptatibus adipisci
+            aut corrupti neque et repellat minima omnis ipsa quo magnam, odio
+            odit atque quia expedita dolores?
+          </p>
+        </div>
+        <div className="flex justify-center mx-auto relative w-full max-w-lg h-full md:h-auto">
           {address ? (
             <div className="flex flex-col gap-5">
-              <Address
-                address={address}
-                admin={admin}
-                owner={owner}
-              />
+              <Address address={address} admin={admin} owner={owner} />
               {owner ? ( // check if address is owner
                 <>
                   <Owner checkSession={checkSession} />
@@ -110,7 +115,7 @@ const Dashboard = () => {
                       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                         <div className="relative my-6 mx-auto">
                           {/*content*/}
-                          <ReloadPageVote styles="bg-slate-200"/>
+                          <ReloadPageVote styles="bg-slate-200" />
                         </div>
                       </div>
                       <div className="w-screen h-screen opacity-40 fixed inset-0 z-40 bg-black"></div>
@@ -144,7 +149,7 @@ const Dashboard = () => {
                   {session !== VOTE_SESSION && (
                     <>
                       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                      <EndVoteSession/>
+                        <EndVoteSession />
                       </div>
                       <div className="w-screen h-screen opacity-40 fixed inset-0 z-40 bg-black"></div>
                       <div className="w-screen h-screen fixed inset-0 z-40 backdrop-blur-sm"></div>
@@ -156,6 +161,7 @@ const Dashboard = () => {
           ) : (
             <ConnectWallet connectWallet={connectWallet} />
           )}
+        </div>
       </div>
     </Layout>
   );

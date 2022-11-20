@@ -6,22 +6,11 @@ import Layout from "../Layout";
 
 const Votes = () => {
   const web3 = useWeb3();
-  const [topic, setTopic] = useState(null);
   const [results, setResults] = useState([]);
   const navigate = useNavigate();
 
-  const { getLatestTopic, getAllVotes, getVoters } = useVoteContract();
+  const { getAllVotes, getVoters } = useVoteContract();
 
-  const getTopic = async () => {
-    try {
-      const res = await getLatestTopic();
-      if (res) {
-        setTopic(res);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   const getAllTopics = async () => {
     try {
@@ -32,7 +21,6 @@ const Votes = () => {
           return { topic, count };
         })
       );
-      console.log(result);
       setResults(result);
     } catch (err) {
       console.log(err);
@@ -49,8 +37,8 @@ const Votes = () => {
   };
 
   useEffect(() => {
-    getTopic();
     getAllTopics();
+    // eslint-disable-next-line
   }, []);
 
   return (

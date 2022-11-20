@@ -64,7 +64,6 @@ const AddVoteOption = (props) => {
     try {
       const optionName = web3.utils.stringToHex(option).padEnd(66, "0");
       const res = await addOption(topic, optionName, address);
-			console.log("tx: ", res);
       if (res) {
         const receipt = getTransactionReceipt(res);
         await sleep(200);

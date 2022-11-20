@@ -50,7 +50,6 @@ const SubmitVote = () => {
     try {
       await sleep(1000);
       const receipt = await web3.eth.getTransactionReceipt(txHash);
-      console.log("receipt, ", receipt);
       if (!receipt) {
         await getTransactionReceipt(txHash);
       }
