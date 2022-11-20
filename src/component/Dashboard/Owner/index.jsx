@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { AiOutlinePlusSquare } from "react-icons/ai";
-import CreateNewVote from "../owner/CreateNewVote";
+import CreateNewVote from "./CreateNewVote";
 
 const OwnerOption = ({checkSession}) => {
   const [showModal, setShowModal] = useState(false);

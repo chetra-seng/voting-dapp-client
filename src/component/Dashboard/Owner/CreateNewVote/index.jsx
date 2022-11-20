@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { toast } from "react-toastify";
-import useVoteContract from "../../../hooks/vote/useVoteContract";
-import useWeb3 from "../../../hooks/web3/useWeb3";
-import networkConfig from "../../../assets/config/network.json";
+import useVoteContract from "../../../../hooks/vote/useVoteContract";
+import useWeb3 from "../../../../hooks/web3/useWeb3";
+import networkConfig from "../../../../assets/config/network.json";
 
 const CreateNewVote = ({ setShowModal, checkSession }) => {
   const [text, setText] = useState(null);

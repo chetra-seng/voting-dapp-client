@@ -1,19 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Web3Context } from "../../contexts/Web3Provider";
-import ConnectWallet from "../ConnectWallet";
+import ConnectWallet from "./ConnectWallet";
 import Layout from "../Layout";
 import networkConfig from "../../assets/config/network.json";
 import useAdminContract from "../../hooks/admin/useAdminContract";
 import useWeb3 from "../../hooks/web3/useWeb3";
-import OwnerOption from "./OwnerOption";
-import AddVoteOption from "../Admin/AddVoteOption";
-import SubmitVote from "../Admin/SubmitVote";
+import Owner from "./Owner";
+import Admin from "./Admin";
+import User from "./User";
 
-import UserAddressAccount from "../UserAddress";
-import ReloadPageVote from "../Admin/ReloadPage";
+import Address from "./Address";
+import ReloadPageVote from "./ReloadPage";
 import useVoteContract from "../../hooks/vote/useVoteContract";
-import EndVoteSession from "../Voter/EndVoteSession";
+import EndVoteSession from "./EndVoteSession";
 const Dashboard = () => {
   const { address, chainId, connectWallet } = useContext(Web3Context);
   const navigate = useNavigate();
@@ -93,14 +93,14 @@ const Dashboard = () => {
       <div className="flex justify-center mx-auto relative w-full max-w-lg h-full md:h-auto">
           {address ? (
             <div className="flex flex-col gap-5">
-              <UserAddressAccount
+              <Address
                 address={address}
                 admin={admin}
                 owner={owner}
               />
               {owner ? ( // check if address is owner
                 <>
-                  <OwnerOption checkSession={checkSession} />
+                  <Owner checkSession={checkSession} />
                   {/*
                     if session is not inactive, show modal
                     TODO: Change modal to reside in the container
@@ -120,7 +120,7 @@ const Dashboard = () => {
                 </>
               ) : admin ? ( // if address is not owner, check if it's admin
                 <>
-                  <AddVoteOption />
+                  <Admin />
                   {/* If session is not register session, 
                     show reload page modal 
                     // TODO: change modal to reside in container  
@@ -140,7 +140,7 @@ const Dashboard = () => {
                 </>
               ) : (
                 <>
-                  <SubmitVote />
+                  <User />
                   {session !== VOTE_SESSION && (
                     <>
                       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">

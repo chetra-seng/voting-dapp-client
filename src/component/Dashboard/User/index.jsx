@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 
-import SessionTopicIndicator from "../../owner/SessionTopicIndicator";
+import SessionTopicIndicator from "../SessionTopicIndicator";
 import useVoteContract from "../../../hooks/vote/useVoteContract";
 import useWeb3 from "../../../hooks/web3/useWeb3";
 import { useEffect } from "react";
@@ -91,6 +91,7 @@ const SubmitVote = () => {
 
   useEffect(() => {
     getData();
+    // eslint-disable-next-line
   }, []);
 
   return (

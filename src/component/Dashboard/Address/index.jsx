@@ -1,6 +1,5 @@
 import React from "react";
 import { MdContentCopy } from "react-icons/md";
-import { FaUserCircle } from "react-icons/fa";
 import { faker } from "@faker-js/faker";
 
 const copyToClipboard = (address) => {

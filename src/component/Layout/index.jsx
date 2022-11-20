@@ -2,7 +2,7 @@ import React from "react";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { GoGraph } from "react-icons/go";
-import { MdDashboardCustomize, MdHome } from "react-icons/md";
+import { MdDashboardCustomize, MdHome, MdInfo } from "react-icons/md";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import AppLogo from "../AppLogo";
@@ -61,7 +61,7 @@ const Layout = ({ children }) => {
 
       <div
         className={
-          "basis-[15vw] h-screen max-md:hidden flex flex-col gap-10 bg-black"
+          "basis-[15vw] max-md:hidden flex flex-col gap-10 bg-black overflow-y-auto"
         }
       >
         <AppLogo />
@@ -101,9 +101,20 @@ const Layout = ({ children }) => {
               <h3>Finished Votes</h3>
             </div>
           </NavLink>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              `no-underline text-white ${isActive ? "bg-primary-100" : null}`
+            }
+          >
+            <div className="nav-item">
+              <MdInfo size={20} />
+              <h3>About</h3>
+            </div>
+          </NavLink>
         </nav>
       </div>
-      <div className="basis-[85vw] p-20 max-md:basis-full">
+      <div className="basis-[85vw] p-20 max-md:basis-full overflow-y-auto">
         <PageAnimation>{children}</PageAnimation>
       </div>
     </div>

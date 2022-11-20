@@ -75,8 +75,12 @@ const useVoteContract = () => {
     return await contract.methods.getTopics().call();
   };
 
-  const getVoteCounts = async () => {
-    return await contract.methods.getVoteCounts().call();
+  const getVoteCount = async (topic, option) => {
+    return await contract.methods.getVoteCount(topic, option).call();
+  };
+
+  const getVoters = async (topic) => {
+    return await contract.methods.getVoters(topic).call();
   };
 
   return {
@@ -86,8 +90,9 @@ const useVoteContract = () => {
     getVoteOptions,
     addVote,
     getAllVotes,
-    getVoteCounts,
-    getCurrentSession
+    getVoteCount,
+    getCurrentSession,
+    getVoters,
   };
 };
 
