@@ -62,7 +62,7 @@ const Layout = ({ children }) => {
           </NavLink>
         </nav>
       </div>
-      <div className="basis-[85vw] p-16 max-md:basis-full overflow-y-auto">
+      <div className="basis-[85vw] max-md:p-8 p-16 max-md:basis-full overflow-y-auto">
         <PageAnimation>{children}</PageAnimation>
       </div>
     </div>
