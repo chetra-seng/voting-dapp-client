@@ -59,6 +59,12 @@
   }
 }
 
+.main {
+  background-image: linear-gradient(rgb(84,4,138,0.8), rgb(68,2,82,0.8)), url("./assets/images/home-bg.webp");
+  background-size: cover;
+  background-position: top center;
+}
+
 body {
   margin: 0;
   width: 100%;

@@ -1,11 +1,12 @@
 import React from "react";
-import { BiMenuAltLeft } from 'react-icons/bi';
-import { BsFillArrowLeftCircleFill } from 'react-icons/bs';
+import { BiMenuAltLeft } from "react-icons/bi";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { GoGraph } from "react-icons/go";
-import { MdDashboardCustomize } from "react-icons/md";
+import { MdDashboardCustomize, MdHome } from "react-icons/md";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import AppLogo from "../AppLogo";
+import PageAnimation from "../PageAnimation";
 const Layout = ({ children }) => {
   const [toggleMenu, setToggleMenu] = useState(false);
   return (
@@ -20,21 +21,26 @@ const Layout = ({ children }) => {
         )}
       </div>
       {toggleMenu && (
-        <div className={
-          "w-[35vw] min-w-max absolute left-0 z-10 rounded-r-md bg-primary-dark md:hidden h-screen flex flex-col gap-10 animate-slide"
-          }>
-          <BsFillArrowLeftCircleFill fontSize={45} className='absolute right-1/2 top-1/2 translate-x-1/2 -translate-y-1/2 rotate-180 hover:rotate-0 hover:animate-pulse transition-all text-primary-100 rounded-full bg-slate-50 border border-slate-50 cursor-pointer' onClick={() => setToggleMenu(false)} />
+        <div
+          className={
+            "w-[35vw] min-w-max absolute left-0 z-10 rounded-r-md bg-primary-dark md:hidden h-screen flex flex-col gap-10 animate-slide"
+          }
+        >
+          <BsFillArrowLeftCircleFill
+            fontSize={45}
+            className="absolute right-1/2 top-1/2 translate-x-1/2 -translate-y-1/2 rotate-180 hover:rotate-0 hover:animate-pulse transition-all text-primary-100 rounded-full bg-slate-50 border border-slate-50 cursor-pointer"
+            onClick={() => setToggleMenu(false)}
+          />
           <AppLogo />
           <nav className="flex flex-col gap-3 text-white grow sidebar-item">
             <NavLink
               to="/dashboard"
-              end
               className={({ isActive }) =>
                 `no-underline text-white ${isActive ? "bg-primary-100" : ""}`
               }
             >
               <div className="flex flex-row justify-start gap-3 h-10 items-center px-3 transition-all">
-                <MdDashboardCustomize fontSize={20}/>
+                <MdDashboardCustomize fontSize={20} />
                 <h3 className="no-underline">Dashboard</h3>
               </div>
             </NavLink>
@@ -55,19 +61,32 @@ const Layout = ({ children }) => {
 
       <div
         className={
-          "basis-[25vw] h-screen max-md:hidden flex flex-col gap-10 bg-black "
+          "basis-[15vw] h-screen max-md:hidden flex flex-col gap-10 bg-black"
         }
       >
         <AppLogo />
         <nav className="flex flex-col gap-3 text-white grow sidebar-item">
           <NavLink
-            to={"/dashboard"} end
+            to={"/"}
+            end
+            className={({ isActive }) =>
+              `no-underline text-white ${isActive ? "bg-primary-100" : ""}`
+            }
+          >
+            <div className="flex flex-row justify-start gap-3 h-10 items-center px-3 transition-all">
+              <MdHome fontSize={20} />
+              <h3 className="no-underline">Home</h3>
+            </div>
+          </NavLink>
+          <NavLink
+            to={"/dashboard"}
+            end
             className={({ isActive }) =>
               `no-underline text-white ${isActive ? "bg-primary-100" : null}`
             }
           >
             <div className="nav-item">
-              <MdDashboardCustomize fontSize={20}/>
+              <MdDashboardCustomize fontSize={20} />
               <h3>Dashboard</h3>
             </div>
           </NavLink>
@@ -78,14 +97,14 @@ const Layout = ({ children }) => {
             }
           >
             <div className="nav-item">
-            <GoGraph fontSize={20} />
-            <h3>Finished Votes</h3>
+              <GoGraph fontSize={20} />
+              <h3>Finished Votes</h3>
             </div>
           </NavLink>
         </nav>
       </div>
-      <div className="basis-[75vw] p-20 max-md:basis-full">
-        {children}
+      <div className="basis-[85vw] p-20 max-md:basis-full">
+        <PageAnimation>{children}</PageAnimation>
       </div>
     </div>
   );
