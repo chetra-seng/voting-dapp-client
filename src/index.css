@@ -54,8 +54,20 @@
     @apply flex items-center justify-center gap-2 w-full rounded-md text-slate-100 bg-[#337ee8] hover:bg-[#337ee8]/90 hover:text-white hover:shadow-md active:scale-[.99] active:bg-[#337ee8]/70 cursor-pointer p-2
   }
 
+  .disabled-btn {
+    @apply flex items-center justify-center gap-2 bg-blue-500 text-white font-bold py-2 px-4 rounded opacity-50 cursor-not-allowed
+  }
+
   .box-container {
     @apply min-w-[40vw] flex flex-col gap-2 justify-center items-start rounded-md border border-gray-300 p-8
+  }
+
+  .green-badge {
+    @apply bg-green-100 text-green-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-green-200 dark:text-green-900
+  }
+
+  .red-badge {
+    @apply bg-red-100 text-red-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-900
   }
 
   .address-container {

@@ -11,7 +11,6 @@ const Votes = () => {
 
   const { getAllVotes, getVoters } = useVoteContract();
 
-
   const getAllTopics = async () => {
     try {
       const res = await getAllVotes();
@@ -47,15 +46,13 @@ const Votes = () => {
         <div className="flex flex-col gap-3">
           <h2 className="inter-heading2">All Vote Topics</h2>
           <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse ab
-            facere eos? Officia excepturi consequuntur iste minus asperiores ex
-            alias at laboriosam ipsum molestiae. Dolorum quasi porro illo
-            aliquam quam? Lorem ipsum dolor sit amet consectetur, adipisicing
-            elit. Voluptas esse omnis amet optio nulla nobis velit porro
-            aspernatur eum illum.
+            List of existing votes topic and their results. User can choose to
+            views old vote topic and vote count on each option. However, voting
+            remain anonymous for all user, once voted, nobody can change the
+            result or manipulate vote result.
           </p>
         </div>
-        <div className="grid grid-cols-4 gap-5 max-h-full max-lg:grid-cols-2 max-md:grid-cols-1 ">
+        <div className="grid grid-cols-4 gap-5 max-h-full place-content-center place-items-center max-md:grid-cols-1 max-lg:grid-cols-2 max-xl:grid-cols-3">
           {results.map((result, index) => (
             <div
               className="container w-60 flex flex-col gap-3 border rounded-md p-5"
@@ -64,9 +61,14 @@ const Votes = () => {
               <p>{`#${index + 1}`}</p>
               <h5>{web3.utils.hexToString(result.topic)}</h5>
               <p>{`${result.count} votes`}</p>
-              <button className="primary-btn" onClick={() => {
-                navigate(`/votes/${result.topic}`)
-              }}>View Result</button>
+              <button
+                className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                onClick={() => {
+                  navigate(`/votes/${result.topic}`);
+                }}
+              >
+                View Result
+              </button>
             </div>
           ))}
         </div>

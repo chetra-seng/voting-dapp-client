@@ -11,23 +11,14 @@ import Admin from "./Admin";
 import User from "./User";
 
 import Address from "./Address";
-import ReloadPageVote from "./ReloadPage";
-import useVoteContract from "../../hooks/vote/useVoteContract";
-import EndVoteSession from "./EndVoteSession";
 const Dashboard = () => {
   const { address, chainId, connectWallet } = useContext(Web3Context);
   const navigate = useNavigate();
 
-  const VOTE_SESSION = "Voting";
-  const REGISTER_SESSION = "Registration";
-  const INACTIVE_SESSION = "Inactive";
-
-  const [session, setSession] = useState(null);
   const [owner, setOwner] = useState(false);
   const [admin, setAdmin] = useState(false);
 
   const { getOwner, isAdmin } = useAdminContract();
-  const { getCurrentSession } = useVoteContract();
   const web3 = useWeb3();
 
   useEffect(() => {
@@ -38,7 +29,6 @@ const Dashboard = () => {
 
   useEffect(() => {
     checkOwner(address);
-    checkSession();
     // eslint-disable-next-line
   }, [address]);
 
@@ -69,34 +59,18 @@ const Dashboard = () => {
     }
   };
 
-  const checkSession = async () => {
-    try {
-      const res = await getCurrentSession();
-      // getCurrentSession response
-      // {
-      //   0: "index",
-      //   1: "sessionName",
-      //   2: "currentBlock",
-      //   3: "EndBlock"
-      // }
-      setSession(res["1"]);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  console.log(owner);
-
   return (
     <Layout>
       <div className="container flex flex-col gap-10">
         <div className="flex flex-col gap-5">
           <h2 className="inter-heading2">Dashboard</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Repellendus, numquam consectetur aspernatur voluptatibus adipisci
-            aut corrupti neque et repellat minima omnis ipsa quo magnam, odio
-            odit atque quia expedita dolores?
+            <ol className="list-decimal list-inside">
+              The flow of vote is shown as below:
+              <li>Owner create a topic, and the voting session start.</li>
+              <li>Admins will provide voting option for users to vote.</li>
+              <li>User can vote to each option they want.</li>
+            </ol>
           </p>
         </div>
         <div className="flex justify-center mx-auto relative w-full max-w-lg h-full md:h-auto">
@@ -104,58 +78,11 @@ const Dashboard = () => {
             <div className="flex flex-col gap-5">
               <Address address={address} admin={admin} owner={owner} />
               {owner ? ( // check if address is owner
-                <>
-                  <Owner checkSession={checkSession} />
-                  {/*
-                    if session is not inactive, show modal
-                    TODO: Change modal to reside in the container
-                   */}
-                  {session !== INACTIVE_SESSION && (
-                    <>
-                      <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                        <div className="relative my-6 mx-auto">
-                          {/*content*/}
-                          <ReloadPageVote styles="bg-slate-200" />
-                        </div>
-                      </div>
-                      <div className="w-screen h-screen opacity-40 fixed inset-0 z-40 bg-black"></div>
-                      <div className="w-screen h-screen fixed inset-0 z-40 backdrop-blur-sm"></div>
-                    </>
-                  )}
-                </>
+                <Owner />
               ) : admin ? ( // if address is not owner, check if it's admin
-                <>
-                  <Admin />
-                  {/* If session is not register session, 
-                    show reload page modal 
-                    // TODO: change modal to reside in container  
-                  */}
-                  {session !== REGISTER_SESSION && (
-                    <>
-                      <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                        <div className="relative my-6 mx-auto">
-                          {/*content*/}
-                          <ReloadPageVote styles="bg-slate-200" />
-                        </div>
-                      </div>
-                      <div className="w-screen h-screen opacity-40 fixed inset-0 z-40 bg-black"></div>
-                      <div className="w-screen h-screen fixed inset-0 z-40 backdrop-blur-sm"></div>
-                    </>
-                  )}
-                </>
+                <Admin />
               ) : (
-                <>
-                  <User />
-                  {session !== VOTE_SESSION && (
-                    <>
-                      <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                        <EndVoteSession />
-                      </div>
-                      <div className="w-screen h-screen opacity-40 fixed inset-0 z-40 bg-black"></div>
-                      <div className="w-screen h-screen fixed inset-0 z-40 backdrop-blur-sm"></div>
-                    </>
-                  )}
-                </>
+                <User />
               )}
             </div>
           ) : (

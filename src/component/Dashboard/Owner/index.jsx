@@ -1,25 +1,58 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlinePlusSquare } from "react-icons/ai";
-import SessionTopicIndicator from "../SessionTopicIndicator";
+import useVoteContract from "../../../hooks/vote/useVoteContract";
 import CreateNewVote from "./CreateNewVote";
 
-const OwnerOption = ({ checkSession }) => {
+const INACTIVE_SESSION = "Inactive";
+const OwnerOption = () => {
   const [showModal, setShowModal] = useState(false);
+  const [session, setSession] = useState(null);
+
+  const { getCurrentSession } = useVoteContract();
+  const checkSession = async () => {
+    try {
+      const res = await getCurrentSession();
+      // getCurrentSession response
+      // {
+      //   0: "index",
+      //   1: "sessionName",
+      //   2: "currentBlock",
+      //   3: "EndBlock"
+      // }
+      setSession(res["1"]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    checkSession();
+  });
+
   return (
     <>
-      <div className="box-container text-center items-center">
-        <SessionTopicIndicator name="Vote Session" styles="bg-[#4CCAF0]" />
+      <div className="box-container">
+        <span className={session === INACTIVE_SESSION? "green-badge": "red-badge"}>{session}</span>
         <h3 className="font-semibold text-xl">New Vote</h3>
-        <p className="font-md text-sm text-slate-800">Add a new vote topic</p>
-        <button
-          onClick={() => {
-            setShowModal(true);
-          }}
-          className="max-w-[70%] min-w-max flex items-center justify-center gap-2 w-full rounded-md text-slate-100 bg-[#337ee8] hover:bg-[#337ee8]/90 hover:text-white hover:shadow-md active:scale-[.99] active:bg-[#337ee8]/70 cursor-pointer p-2"
-        >
-          <AiOutlinePlusSquare size={20} />
-          <span>Create a topic</span>
-        </button>
+        <p>
+          Please click on create a topic, enter a topic for other to vote, and
+          the voting session will begin. Once the vote is started, it can't be
+          stopped until the vote is complete.
+        </p>
+        <div className="flex self-center">
+          <button
+            disabled={session !== INACTIVE_SESSION}
+            onClick={() => {
+              setShowModal(true);
+            }}
+            className={
+              session !== INACTIVE_SESSION ? "disabled-btn" : "primary-btn"
+            }
+          >
+            <AiOutlinePlusSquare size={20} />
+            <span>Create a topic</span>
+          </button>
+        </div>
       </div>
       {showModal ? (
         <>

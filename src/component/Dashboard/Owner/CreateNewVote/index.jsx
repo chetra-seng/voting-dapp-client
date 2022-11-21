@@ -72,7 +72,7 @@ const CreateNewVote = ({ setShowModal, checkSession }) => {
   };
 
   return (
-    <div className="flex flex-col gap-3 shadow-md border rounded-md">
+    <div className="flex flex-col shadow-md border rounded-md">
       <div className="relative">
         <button
           onClick={() => {
@@ -82,22 +82,22 @@ const CreateNewVote = ({ setShowModal, checkSession }) => {
           <AiOutlineClose size={20} className={"absolute right-2 top-2"} />
         </button>
       </div>
-      <div className="flex flex-col gap-9 p-9 w-[440px] h-[310px]">
+      <div className="box-container border-0 gap-5">
         <div className="title-wrapper">
-          <div className="text-2xl font-medium">Create New Vote</div>
-          <div className="text-sm font-medium">Weeeeeeee</div>
+          <div className="font-semibold text-xl">New Vote</div>
+          <p>Enter a voting topic to start voting</p>
         </div>
-        <div className="relative left-0 font-popin font-medium">
-          <div className="font-medium text-sm">Vote Title</div>
+        <div className="w-full">
+          <p className="text-sm">Vote title</p>
           <input
-            className="w-full h-[48px] focus:outline-none bg-white px-4 rounded-md shadow-md"
+            className="w-full h-[48px] focus:outline-none bg-[#F2F1F0] px-4 rounded-md"
             type="text"
             onChange={(e) => {
               setText(e.target.value);
             }}
           />
         </div>
-        <button className="primary-btn" onClick={handleAddTopic}>
+        <button className="primary-btn  md:w-[60%] md:self-center" onClick={handleAddTopic}>
           Create Now
         </button>
       </div>
